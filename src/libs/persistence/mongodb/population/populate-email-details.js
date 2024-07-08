@@ -31,7 +31,6 @@ db.createCollection(collectionName, {
         bcc: { bsonType: ['string', 'null'] },
         subject: { bsonType: 'string' },
         text: { bsonType: ['string', 'null'] },
-        html: { bsonType: ['string', 'null'] },
         attachment: {
           bsonType: ['array', 'null'],
           items: { bsonType: 'string' },
@@ -51,11 +50,10 @@ db.createCollection(collectionName, {
 const exampleData = [
   {
     id: generateUUID(), // Generate UUID for 'id' manually
-    from: 'sender1@example.com',
-    to: 'recipient1@example.com',
+    from: 'mailgun@sandboxcdb5332a3b1440e6943a9c428a85cedc.mailgun.org',
+    to: 'samuelquisol@gmail.com',
     subject: 'Subject 1',
     text: 'This is the first test email',
-    html: '<p>This is the first <strong>test</strong> email</p>',
     attachment: [
       'https://example.com/file1.pdf',
       'https://example.com/image1.jpg',
@@ -63,20 +61,18 @@ const exampleData = [
   },
   {
     id: generateUUID(), // Generate UUID for 'id' manually
-    from: 'sender2@example.com',
-    to: 'recipient2@example.com',
+    from: 'mailgun@sandboxcdb5332a3b1440e6943a9c428a85cedc.mailgun.org',
+    to: 'hrpe.jejfh87@juaxe.com',
     subject: 'Subject 2',
     text: 'This is the second test email',
-    html: '<p>This is the second <strong>test</strong> email</p>',
     attachment: ['https://example.com/file2.docx'],
   },
   {
     id: generateUUID(), // Generate UUID for 'id' manually
-    from: 'sender3@example.com',
-    to: 'recipient3@example.com',
+    from: 'mailgun@sandboxcdb5332a3b1440e6943a9c428a85cedc.mailgun.org',
+    to: 'elipeforero21@gmail.com',
     subject: 'Subject 3',
     text: 'This is the third test email',
-    html: '<p>This is the third <strong>test</strong> email</p>',
     attachment: [
       'https://example.com/file3.zip',
       'https://example.com/image2.png',
