@@ -7,12 +7,11 @@ import dbConfig from './mongodb/config/db-config';
 @Module({
   imports: [
     MongooseModule.forRootAsync({
-      useFactory: (configService: ConfigType<typeof dbConfig>) => {
-        const { db } = configService;
-        return { uri: db };
-      },
+      useFactory: (configService: ConfigType<typeof dbConfig>) => ({
+        uri: configService.db,
+      }),
       inject: [dbConfig.KEY],
-    }),
-  ],
+    })  ],
+  exports: [MongooseModule],
 })
 export class PersistenceModule {}
