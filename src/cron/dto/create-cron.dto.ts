@@ -2,33 +2,52 @@ import { ApiProperty } from "@nestjs/swagger";
 import { IsNotEmpty, IsString } from "class-validator";
 
 export class CreateCronDto {
-    @ApiProperty()
-    @IsNotEmpty()
-    @IsString()
-    name: string;
+  @ApiProperty({
+    description: 'Name of the cron job',
+    example: 'Email Cron'
+  })
+  @IsNotEmpty()
+  @IsString()
+  name: string;
 
-    @ApiProperty()
-    @IsNotEmpty()
-    @IsString()
-    description: string;
+  @ApiProperty({
+    description: 'Description of the cron job',
+    example: 'This cron job send in determinated schedule emails'
+  })
+  @IsNotEmpty()
+  @IsString()
+  description: string;
 
-    @ApiProperty()
-    @IsNotEmpty()
-    @IsString()
-    schedule: string;
+  @ApiProperty({
+    description: 'Cron schedule expression',
+    example: '0 0 * * *'
+  })
+  @IsNotEmpty()
+  @IsString()
+  schedule: string;
 
-    @ApiProperty()
-    @IsNotEmpty()
-    @IsString()
-    timezone: string;
+  @ApiProperty({
+    description: 'Timezone in which the cron job runs',
+    example: 'America/Bogota'
+  })
+  @IsNotEmpty()
+  @IsString()
+  timezone: string;
 
-    @ApiProperty()
-    @IsNotEmpty()
-    @IsString()
-    status: string;
+  @ApiProperty({
+    description: 'Current status of the cron job',
+    example: 'active'
+  })
+  @IsNotEmpty()
+  @IsString()
+  status: string;
 
-    @ApiProperty()
-    @IsNotEmpty()
-    @IsString()
-    createdBy: string;
-  }
+  @ApiProperty({
+    description: 'Role of the user who created the cron job',
+    example: 'system'
+  })
+  @IsNotEmpty()
+  @IsString()
+  // dejarlo a que sea por defecto system
+  createdBy: string;
+}

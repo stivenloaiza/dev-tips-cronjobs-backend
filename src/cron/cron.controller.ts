@@ -1,10 +1,11 @@
-import { Controller, Get, Post, Patch, Delete, Body, Param, Query } from '@nestjs/common';
-import { ApiOperation, ApiResponse, ApiBadRequestResponse, ApiParam, ApiQuery, ApiBody } from '@nestjs/swagger';
+import { Controller, Get, Post, Patch, Delete, Body, Param, Query, HttpStatus, HttpException } from '@nestjs/common';
+import { ApiOperation, ApiResponse, ApiBadRequestResponse, ApiParam, ApiQuery, ApiBody, ApiTags } from '@nestjs/swagger';
 import { CronService } from './cron.service';
 import { CreateCronDto } from './dto/create-cron.dto';
 import { UpdateCronDto } from './dto/update-cron.dto';
 import { Cron } from './entities/cron.entity';
 
+@ApiTags('Cron')
 @Controller('cron')
 export class CronController {
   constructor(private readonly cronService: CronService) { }
@@ -20,8 +21,17 @@ export class CronController {
   @ApiBadRequestResponse({
     description: 'Invalid data or Cron Job already exists with the same name.',
   })
-  create(@Body() createCronDto: CreateCronDto) {
-    return this.cronService.create(createCronDto);
+  async create(@Body() createCronDto: CreateCronDto) {
+    try {
+      const newCron = await this.cronService.create(createCronDto);
+      return {
+        status: HttpStatus.CREATED,
+        message: 'Cron job created successfully',
+        newCron,
+      };
+    } catch (error) {
+      throw new HttpException(error.message, HttpStatus.BAD_REQUEST);
+    }
   }
 
   @Get()
@@ -36,8 +46,17 @@ export class CronController {
     description: 'Retrieved all Cron Jobs successfully.',
     type: [Cron],
   })
-  findAll() {
-    return this.cronService.findAll();
+  async findAll() {
+    try {
+      const crons = await this.cronService.findAll();
+      return {
+        status: HttpStatus.OK,
+        message: 'Cron jobs retrieved successfully',
+        crons,
+      };
+    } catch (error) {
+      throw new HttpException(error.message, HttpStatus.BAD_REQUEST);
+    }
   }
 
 
@@ -52,8 +71,17 @@ export class CronController {
   @ApiBadRequestResponse({
     description: 'Invalid ID format or Cron Job not found.',
   })
-  findOne(@Param('id') id: string) {
-    return this.cronService.findOne(id);
+  async findOne(@Param('id') id: string) {
+    try {
+      const cron = await this.cronService.findOne(id);
+      return {
+        status: HttpStatus.OK,
+        message: 'Cron job retrieved successfully',
+        cron,
+      };
+    } catch (error) {
+      throw new HttpException(error.message, HttpStatus.BAD_REQUEST);
+    }
   }
 
   @Patch(':id')
@@ -68,8 +96,17 @@ export class CronController {
   @ApiBadRequestResponse({
     description: 'Invalid ID format, data, or Cron Job not found.',
   })
-  update(@Param('id') id: string, @Body() updateCronDto: UpdateCronDto) {
-    return this.cronService.update(id, updateCronDto);
+  async update(@Param('id') id: string, @Body() updateCronDto: UpdateCronDto) {
+    try {
+      const updatedCron = await this.cronService.update(id, updateCronDto);
+      return {
+        status: HttpStatus.OK,
+        message: 'Cron job updated successfully',
+        updatedCron,
+      };
+    } catch (error) {
+      throw new HttpException(error.message, HttpStatus.BAD_REQUEST);
+    }
   }
 
   @Delete(':id')
@@ -82,8 +119,16 @@ export class CronController {
   @ApiBadRequestResponse({
     description: 'Invalid ID format or Cron Job not found.',
   })
-  softDelete(@Param('id') id: string) {
-    return this.cronService.softDelete(id);
+  async softDelete(@Param('id') id: string) {
+    try {
+      await this.cronService.softDelete(id);
+      return {
+        status: HttpStatus.NO_CONTENT,
+        message: 'Cron job soft deleted successfully',
+      };
+    } catch (error) {
+      throw new HttpException(error.message, HttpStatus.BAD_REQUEST);
+    }
   }
 
   @Delete(':id/permanently')
@@ -96,8 +141,16 @@ export class CronController {
   @ApiBadRequestResponse({
     description: 'Invalid ID format or Cron Job not found.',
   })
-  remove(@Param('id') id: string) {
-    return this.cronService.remove(id);
+  async remove(@Param('id') id: string) {
+    try {
+      await this.cronService.remove(id);
+      return {
+        status: HttpStatus.NO_CONTENT,
+        message: 'Cron job permanently deleted successfully',
+      };
+    } catch (error) {
+      throw new HttpException(error.message, HttpStatus.BAD_REQUEST);
+    }
   }
 
   @Patch(':id/restore')
@@ -111,7 +164,16 @@ export class CronController {
   @ApiBadRequestResponse({
     description: 'Invalid ID format or Cron Job not found.',
   })
-  restore(@Param('id') id: string) {
-    return this.cronService.restore(id);
+  async restore(@Param('id') id: string) {
+    try {
+      const restoredCron = await this.cronService.restore(id);
+      return {
+        status: HttpStatus.OK,
+        message: 'Cron job restored successfully',
+        restoredCron,
+      };
+    } catch (error) {
+      throw new HttpException(error.message, HttpStatus.BAD_REQUEST);
+    }
   }
 }
