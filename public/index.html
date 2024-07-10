@@ -9,7 +9,7 @@
     <form id="signupForm">
       <div>
         <label for="name">Name:</label>
-        <input type="text" id="name" name="name" required />
+        <input type="text" id="name" name="name"  />
       </div>
       <div>
         <label for="email">Email:</label>
@@ -30,7 +30,7 @@
 
           try {
             const response = await fetch(
-              'http://localhost:3000/api/v1/mail/signup',
+              'http://localhost:3000/api/v1/mail/welcome',
               {
                 method: 'POST',
                 headers: {
