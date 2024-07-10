@@ -11,7 +11,8 @@ import dbConfig from './mongodb/config/db-config';
         uri: configService.db,
       }),
       inject: [dbConfig.KEY],
-    })  ],
+    }),
+  ],
   exports: [MongooseModule],
 })
 export class PersistenceModule {}
