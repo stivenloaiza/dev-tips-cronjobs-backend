@@ -6,6 +6,9 @@ import { PersistenceModule } from './libs/persistence/persistence.module';
 import { APP_FILTER } from '@nestjs/core';
 import { HttpExceptionFilter } from './libs/common/filters/http-exception.filter';
 import { AppService } from './app.service';
+import { UsersModule } from './queries/users/users.module';
+import { TipsModule } from './queries/tips/tips.module';
+import { CronJobsModule } from './queries/cron-jobs/cron-jobs.module';
 
 @Module({
   imports: [
@@ -15,6 +18,9 @@ import { AppService } from './app.service';
       isGlobal: true,
     }),
     PersistenceModule,
+    UsersModule, 
+    TipsModule, 
+    CronJobsModule,
   ],
   controllers: [AppController],
   providers: [
