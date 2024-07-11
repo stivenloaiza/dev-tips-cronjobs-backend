@@ -1,11 +1,9 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
-import { AppController } from './app.controller';
 import dbConfig from './libs/persistence/mongodb/config/db-config';
 import { PersistenceModule } from './libs/persistence/persistence.module';
 import { APP_FILTER } from '@nestjs/core';
 import { HttpExceptionFilter } from './libs/common/filters/http-exception.filter';
-import { AppService } from './app.service';
 import { MailModule } from './mail/mail.module';
 
 @Module({
@@ -18,9 +16,8 @@ import { MailModule } from './mail/mail.module';
     PersistenceModule,
     MailModule,
   ],
-  controllers: [AppController],
+  controllers: [],
   providers: [
-    AppService,
     {
       provide: APP_FILTER,
       useClass: HttpExceptionFilter,
