@@ -2,7 +2,7 @@ import { Controller, Get } from '@nestjs/common';
 import { ApiTags, ApiOperation, ApiResponse } from '@nestjs/swagger';
 import { CronJobsService } from './cron-jobs.service';
 
-@ApiTags('cron-jobs')
+@ApiTags('Queries Cron Job')
 @Controller('cron-jobs')
 export class CronJobsController {
   constructor(private readonly cronJobsService: CronJobsService) {}

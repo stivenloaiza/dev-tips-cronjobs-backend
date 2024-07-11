@@ -14,7 +14,7 @@ export class UsersService {
   async getUsers(): Promise<UserDto[]> {
     try {
       const response: AxiosResponse<UserDto[]> = await this.httpService
-        .get('URL_DEL_ENDPOINT_DE_USERS')
+        .get(process.env.END_POINT_USERS)
         .toPromise();
       return response.data;
     } catch (error) {
