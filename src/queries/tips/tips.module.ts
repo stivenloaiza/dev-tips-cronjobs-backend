@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { TipsController } from './tips.controller';
 import { TipsService } from './tips.service';
-import { Tip, TipSchema } from './tips.schema';
+import { Tip, TipSchema } from './schema/tips.schema';
 import { TipRepository } from './repositories/tip.repository';
 import { HttpModule } from '@nestjs/axios';
 

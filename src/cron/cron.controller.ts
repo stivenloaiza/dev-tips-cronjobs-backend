@@ -1,14 +1,32 @@
-import { Controller, Get, Post, Patch, Delete, Body, Param, Query, HttpStatus, HttpException } from '@nestjs/common';
-import { ApiOperation, ApiResponse, ApiBadRequestResponse, ApiParam, ApiQuery, ApiBody, ApiTags } from '@nestjs/swagger';
+import {
+  Controller,
+  Get,
+  Post,
+  Patch,
+  Delete,
+  Body,
+  Param,
+  HttpStatus,
+  HttpException,
+} from '@nestjs/common';
+import {
+  ApiOperation,
+  ApiResponse,
+  ApiBadRequestResponse,
+  ApiParam,
+  ApiQuery,
+  ApiBody,
+  ApiTags,
+} from '@nestjs/swagger';
 import { CronService } from './cron.service';
 import { CreateCronDto } from './dto/create-cron.dto';
 import { UpdateCronDto } from './dto/update-cron.dto';
-import { Cron } from './entities/cron.entity';
+import { Cron } from './cron.entity';
 
 @ApiTags('Cron')
 @Controller('cron')
 export class CronController {
-  constructor(private readonly cronService: CronService) { }
+  constructor(private readonly cronService: CronService) {}
 
   @Post()
   @ApiOperation({ summary: 'Create a new Cron Job' })
@@ -58,7 +76,6 @@ export class CronController {
       throw new HttpException(error.message, HttpStatus.BAD_REQUEST);
     }
   }
-
 
   @Get(':id')
   @ApiOperation({ summary: 'Retrieve a Cron Job by ID' })
@@ -111,7 +128,10 @@ export class CronController {
 
   @Delete(':id')
   @ApiOperation({ summary: 'Soft delete a Cron Job by ID' })
-  @ApiParam({ name: 'id', description: 'The ID of the Cron Job to soft delete' })
+  @ApiParam({
+    name: 'id',
+    description: 'The ID of the Cron Job to soft delete',
+  })
   @ApiResponse({
     status: 204,
     description: 'Soft deleted the Cron Job successfully.',
@@ -133,7 +153,10 @@ export class CronController {
 
   @Delete(':id/permanently')
   @ApiOperation({ summary: 'Permanently delete a Cron Job by ID' })
-  @ApiParam({ name: 'id', description: 'The ID of the Cron Job to delete permanently' })
+  @ApiParam({
+    name: 'id',
+    description: 'The ID of the Cron Job to delete permanently',
+  })
   @ApiResponse({
     status: 204,
     description: 'Deleted the Cron Job permanently successfully.',

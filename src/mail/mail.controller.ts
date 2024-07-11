@@ -18,7 +18,8 @@ export class MailController {
         email: { type: 'string', example: 'john@example.com' },
       },
     },
-  })  async signup(@Body() body: { name: string; email: string }) {
+  })
+  async signup(@Body() body: { name: string; email: string }) {
     const { name, email } = body;
     const subject = 'Thank You For Subscribing!';
     const text = `Hello, Thank you for registering! We are excited to have you affiliated.`;
@@ -38,11 +39,14 @@ export class MailController {
         email: { type: 'string', example: 'john@example.com' },
         link: { type: 'string', example: 'https://example.com/tip' },
         img_url: { type: 'string', example: 'https://example.com/image.jpg' },
-        tipsToStore: { type: 'string', example: 'Keep your code clean and readable' },
+        tipsToStore: {
+          type: 'string',
+          example: 'Keep your code clean and readable',
+        },
       },
     },
   })
-    async tipoftheday(
+  async tipoftheday(
     @Body()
     body: {
       name: string;

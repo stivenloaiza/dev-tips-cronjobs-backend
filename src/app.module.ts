@@ -5,7 +5,6 @@ import { PersistenceModule } from './libs/persistence/persistence.module';
 import { APP_FILTER } from '@nestjs/core';
 import { HttpExceptionFilter } from './libs/common/filters/http-exception.filter';
 import { MailModule } from './mail/mail.module';
-import { AppService } from './app.service';
 import { CronModule } from './cron/cron.module';
 import { UsersModule } from './queries/users/users.module';
 import { TipsModule } from './queries/tips/tips.module';
@@ -21,8 +20,8 @@ import { CronJobsModule } from './queries/cron-jobs/cron-jobs.module';
     PersistenceModule,
     MailModule,
     CronModule,
-    UsersModule, 
-    TipsModule, 
+    UsersModule,
+    TipsModule,
     CronJobsModule,
   ],
   controllers: [],

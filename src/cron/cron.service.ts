@@ -1,10 +1,9 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { Cron } from './entities/cron.entity';
+import { Cron } from './cron.entity';
 import { CreateCronDto } from './dto/create-cron.dto';
 import { UpdateCronDto } from './dto/update-cron.dto';
-
 
 @Injectable()
 export class CronService {
@@ -18,7 +17,10 @@ export class CronService {
       await createdCron.save();
       return createdCron;
     } catch (error) {
-      throw new HttpException('Error creating cron job', HttpStatus.BAD_REQUEST);
+      throw new HttpException(
+        'Error creating cron job',
+        HttpStatus.BAD_REQUEST,
+      );
     }
   }
 
@@ -30,20 +32,20 @@ export class CronService {
     return this.cronModel.findById(id).exec();
   }
 
-   async update(id: string, updateCronDto: UpdateCronDto): Promise<Cron> {
-    try { 
+  async update(id: string, updateCronDto: UpdateCronDto): Promise<Cron> {
+    try {
       await this.cronModel.findByIdAndUpdate(id, updateCronDto).exec();
       const updatedCron = await this.cronModel.findById(id).exec();
       return updatedCron;
-      
     } catch (error) {
-      return error
-      
+      return error;
     }
   }
 
   async softDelete(id: string): Promise<Cron> {
-    return this.cronModel.findByIdAndUpdate(id, { deletedAt: new Date() }).exec();
+    return this.cronModel
+      .findByIdAndUpdate(id, { deletedAt: new Date() })
+      .exec();
   }
 
   async remove(id: string): Promise<void> {
@@ -53,6 +55,4 @@ export class CronService {
   async restore(id: string): Promise<Cron> {
     return this.cronModel.findByIdAndUpdate(id, { deletedAt: null }).exec();
   }
-
-
 }

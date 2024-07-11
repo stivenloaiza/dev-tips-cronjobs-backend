@@ -3,9 +3,6 @@ import { Document } from 'mongoose';
 
 @Schema({ timestamps: true })
 export class Cron extends Document {
-  // @Prop({ required: true })
-  // id: string;
-
   @Prop({ required: true })
   name: string;
 
