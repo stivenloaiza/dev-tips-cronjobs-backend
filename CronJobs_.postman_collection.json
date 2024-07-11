@@ -20,7 +20,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"name\": \"Email Cron\",\r\n    \"description\":\"send emails with cron implementation\",\r\n    \"schedule\":\"* * * * * 1\",\r\n    \"timezone\":\"America/Bogota\",\r\n    \"status\":\"active\",\r\n    \"createdBy\":\"system\"\r\n\r\n}",
+					"raw": "{\r\n    \"name\": \"Email Cron\",\r\n    \"description\":\"send emails with cron implementation\",\r\n    \"schedule\":\"* * * * * 1\",\r\n    \"timezone\":\"Bog\",\r\n    \"status\":\"active\",\r\n    \"createdBy\":\"system\"\r\n\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -96,7 +96,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"name\": \"Ana\",\r\n    \"description\":\"nestjs\",\r\n    \"schedule\":\"1 * * * * *\",\r\n    \"timezone\":\"Bog\",\r\n    \"status\":\"active\",\r\n    \"createdBy\":\"ana\"\r\n\r\n}",
+					"raw": "{\r\n    \"name\": \"Ana\",\r\n    \"description\":\"nestjs\",\r\n    \"schedule\":\"1 * * * * *\",\r\n    \"timezone\":\"Bog\",\r\n    \"status\":\"active\",\r\n    \"createdBy\":\"system\"\r\n\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -132,7 +132,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"name\": \"Ana\",\r\n    \"description\":\"nestjs\",\r\n    \"schedule\":\"1 * * * * *\",\r\n    \"timezone\":\"Bog\",\r\n    \"status\":\"active\",\r\n    \"createdBy\":\"ana\"\r\n\r\n}",
+					"raw": "{\r\n    \"name\": \"Ana\",\r\n    \"description\":\"nestjs\",\r\n    \"schedule\":\"1 * * * * *\",\r\n    \"timezone\":\"Bog\",\r\n    \"status\":\"active\",\r\n    \"createdBy\":\"system\"\r\n\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -162,7 +162,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"name\": \"Ana\",\r\n    \"description\":\"nestjs\",\r\n    \"schedule\":\"1 * * * * *\",\r\n    \"timezone\":\"Bog\",\r\n    \"status\":\"activo\",\r\n    \"createdBy\":\"ana\"\r\n\r\n}",
+					"raw": "{\r\n    \"name\": \"Ana\",\r\n    \"description\":\"nestjs\",\r\n    \"schedule\":\"1 * * * * *\",\r\n    \"timezone\":\"Bog\",\r\n    \"status\":\"activo\",\r\n    \"createdBy\":\"system\"\r\n\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"

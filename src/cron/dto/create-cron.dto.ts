@@ -28,7 +28,7 @@ export class CreateCronDto {
 
   @ApiProperty({
     description: 'Timezone in which the cron job runs',
-    example: 'America/Bogota'
+    example: 'Bog'
   })
   @IsNotEmpty()
   @IsString()
