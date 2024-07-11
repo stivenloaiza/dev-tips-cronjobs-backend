@@ -1,12 +1,24 @@
 import { Body, Controller, Post } from '@nestjs/common';
 import { MailService } from './mail.service';
+import { ApiBody, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 
 @Controller('mail')
+@ApiTags('Mail')
 export class MailController {
   constructor(private readonly mailService: MailService) {}
 
   @Post('welcome')
-  async signup(@Body() body: { name: string; email: string }) {
+  @ApiOperation({ summary: 'Send a welcome email' })
+  @ApiResponse({ status: 201, description: 'Email sent successfully' })
+  @ApiResponse({ status: 400, description: 'Bad Request' })
+  @ApiBody({
+    schema: {
+      properties: {
+        name: { type: 'string', example: 'John Doe' },
+        email: { type: 'string', example: 'john@example.com' },
+      },
+    },
+  })  async signup(@Body() body: { name: string; email: string }) {
     const { name, email } = body;
     const subject = 'Thank You For Subscribing!';
     const text = `Hello, Thank you for registering! We are excited to have you affiliated.`;
@@ -16,7 +28,21 @@ export class MailController {
   }
 
   @Post('tips')
-  async tipoftheday(
+  @ApiOperation({ summary: 'Send a tip of the day email' })
+  @ApiResponse({ status: 201, description: 'Email sent successfully' })
+  @ApiResponse({ status: 400, description: 'Bad Request' })
+  @ApiBody({
+    schema: {
+      properties: {
+        name: { type: 'string', example: 'John Doe' },
+        email: { type: 'string', example: 'john@example.com' },
+        link: { type: 'string', example: 'https://example.com/tip' },
+        img_url: { type: 'string', example: 'https://example.com/image.jpg' },
+        tipsToStore: { type: 'string', example: 'Keep your code clean and readable' },
+      },
+    },
+  })
+    async tipoftheday(
     @Body()
     body: {
       name: string;
@@ -41,6 +67,17 @@ export class MailController {
   }
 
   @Post('code')
+  @ApiOperation({ summary: 'Send an access code email' })
+  @ApiResponse({ status: 201, description: 'Email sent successfully' })
+  @ApiResponse({ status: 400, description: 'Bad Request' })
+  @ApiBody({
+    schema: {
+      properties: {
+        code: { type: 'string', example: '123456' },
+        email: { type: 'string', example: 'john@example.com' },
+      },
+    },
+  })
   async sendCode(
     @Body()
     body: {
