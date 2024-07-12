@@ -11,6 +11,8 @@ export class MailController {
   @ApiOperation({ summary: 'Send a welcome email' })
   @ApiResponse({ status: 201, description: 'Email sent successfully' })
   @ApiResponse({ status: 400, description: 'Bad Request' })
+  @ApiResponse({ status: 404, description: 'Not Found' })
+  @ApiResponse({ status: 500, description: 'Internal Server Error' })
   @ApiBody({
     schema: {
       properties: {
@@ -20,8 +22,8 @@ export class MailController {
     },
   })  async signup(@Body() body: { name: string; email: string }) {
     const { name, email } = body;
-    const subject = 'Thank You For Subscribing!';
-    const text = `Hello, Thank you for registering! We are excited to have you affiliated.`;
+    const subject = 'Gracias por Suscribirte!';
+    const text = `Hola, ¡Gracias por registrarte! Estamos emocionados de tenerlo afiliado.`;
     const html = this.getWelcomeEmailHtml(name, email);
 
     return await this.sendEmail(email, subject, text, html);
@@ -31,6 +33,8 @@ export class MailController {
   @ApiOperation({ summary: 'Send a tip of the day email' })
   @ApiResponse({ status: 201, description: 'Email sent successfully' })
   @ApiResponse({ status: 400, description: 'Bad Request' })
+  @ApiResponse({ status: 404, description: 'Not Found' })
+  @ApiResponse({ status: 500, description: 'Internal Server Error' })
   @ApiBody({
     schema: {
       properties: {
@@ -53,8 +57,8 @@ export class MailController {
     },
   ) {
     const { name, email, link, img_url, tipsToStore } = body;
-    const subject = 'Your Tip of the Day!';
-    const text = 'Your tip of the day, Congratulations!';
+    const subject = 'Tu Consejo del Dia!';
+    const text = `Tu consejo del día, felicidades. ${tipsToStore}!`;
     const html = this.getTipOfTheDayEmailHtml(
       name,
       email,
@@ -70,6 +74,8 @@ export class MailController {
   @ApiOperation({ summary: 'Send an access code email' })
   @ApiResponse({ status: 201, description: 'Email sent successfully' })
   @ApiResponse({ status: 400, description: 'Bad Request' })
+  @ApiResponse({ status: 404, description: 'Not Found' })
+  @ApiResponse({ status: 500, description: 'Internal Server Error' })
   @ApiBody({
     schema: {
       properties: {
@@ -86,8 +92,8 @@ export class MailController {
     },
   ) {
     const { code, email } = body;
-    const subject = 'Access Code';
-    const text = `Your access getCodeEmailHtml is: ${code}`;
+    const subject = 'Codigo de acceso';
+    const text = `Tu codigo de acceso es: ${code.toUpperCase()}`;
     const html = this.getCodeEmailHtml(code, email);
     return await this.sendEmail(email, subject, text, html);
   }
@@ -451,7 +457,7 @@ export class MailController {
             <h1>Código de verificación</h1>
             <img src="https://res.cloudinary.com/dkiwegaku/image/upload/v1720618084/oshabk1mnjfp46l884cp.png" alt="logo-dev-tips" width="220px" height="150px">
             <p>Usa el siguiente código para validar el ingreso a DevTips</p>
-            <div class="code">${code}</div>
+            <div class="code">${code.toUpperCase()}</div>
             <p class="note">El código expirará en 15 minutos</p>
             <tr>
                 <td style="padding: 20px; word-break: break-word;" valign="top" align="left">
