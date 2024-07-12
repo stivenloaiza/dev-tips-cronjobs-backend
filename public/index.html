@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign Up</title>
+  </head>
+  <body>
+    <form id="signupForm">
+      <div>
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name"  />
+      </div>
+      <div>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email"  required />
+      </div>
+      <button type="submit">Sign Up</button>
+    </form>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        const form = document.getElementById('signupForm');
+
+        form.addEventListener('submit', async function (e) {
+          e.preventDefault();
+
+          const name = document.getElementById('name').value;
+          const email = document.getElementById('email').value;
+
+          try {
+            const response = await fetch(
+              'http://localhost:3000/api/v1/mail/welcome',
+              {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ name, email }),
+              },
+            );
+
+            const result = await response.json();
+            if (!response.ok) {
+              throw new Error(result.message || 'Unknown error');
+            }
+
+            alert('Welcome email sent successfully!');
+          } catch (error) {
+            alert('Failed to send welcome email: ' + error.message);
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
