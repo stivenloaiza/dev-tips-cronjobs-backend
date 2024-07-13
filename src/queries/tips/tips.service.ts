@@ -10,7 +10,10 @@ export class TipsService {
   async getTips(): Promise<TipDto[]> {
     try {
       const response: AxiosResponse<TipDto[]> = await this.httpService
-        .get('URL_DEL_ENDPOINT_DE_TIPS')
+        .get('URL_DEL_ENDPOINT_DE_TIPS') 
+        // revisar que ya es una variable de entorno 
+        // corre en el 3001/tips-users
+
         .toPromise();
       return response.data;
     } catch (error) {
