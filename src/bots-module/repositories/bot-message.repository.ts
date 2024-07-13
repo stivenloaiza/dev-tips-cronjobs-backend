@@ -7,7 +7,8 @@ import { BotMessage } from '../schemas/bot-message.schema';
 @Injectable()
 export class BotMessageRepository {
   constructor(
-    @InjectModel('BotMessage') private readonly botMessageModel: Model<BotMessage>,
+    @InjectModel('BotMessage')
+    private readonly botMessageModel: Model<BotMessage>,
   ) {}
 
   async create(createBotMessageDto: CreateBotMessageDto): Promise<BotMessage> {
