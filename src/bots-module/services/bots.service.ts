@@ -12,8 +12,11 @@ export class BotService {
     private readonly httpService: HttpService,
   ) {}
 
-  async sendMessageToBots(createBotMessageDto: CreateBotMessageDto): Promise<BotMessage> {
-    const savedMessage = await this.botMessageRepository.create(createBotMessageDto);
+  async sendMessageToBots(
+    createBotMessageDto: CreateBotMessageDto,
+  ): Promise<BotMessage> {
+    const savedMessage =
+      await this.botMessageRepository.create(createBotMessageDto);
 
     if (createBotMessageDto.mediums.includes('telegram')) {
       await this.sendTelegramMessage(createBotMessageDto.tip);
@@ -30,17 +33,21 @@ export class BotService {
     const telegramApiUrl = `https://api.telegram.org/bot${process.env.TELEGRAM_API_TOKEN}/sendMessage`;
     const chatId = process.env.TELEGRAM_CHAT_ID;
 
-    return this.httpService.post(telegramApiUrl, {
-      chat_id: chatId,
-      text: message,
-    }).toPromise();
+    return this.httpService
+      .post(telegramApiUrl, {
+        chat_id: chatId,
+        text: message,
+      })
+      .toPromise();
   }
 
   private async sendDiscordMessage(message: string): Promise<AxiosResponse> {
     const webhookUrl = process.env.DISCORD_WEBHOOK_URL;
 
-    return this.httpService.post(webhookUrl, {
-      content: message,
-    }).toPromise();
+    return this.httpService
+      .post(webhookUrl, {
+        content: message,
+      })
+      .toPromise();
   }
 }

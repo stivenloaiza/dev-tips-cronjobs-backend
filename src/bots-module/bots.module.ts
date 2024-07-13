@@ -9,7 +9,9 @@ import { HttpModule } from '@nestjs/axios';
 @Module({
   imports: [
     HttpModule,
-    MongooseModule.forFeature([{ name: 'BotMessage', schema: BotMessageSchema }]),
+    MongooseModule.forFeature([
+      { name: 'BotMessage', schema: BotMessageSchema },
+    ]),
   ],
   controllers: [BotsController],
   providers: [BotService, BotMessageRepository],

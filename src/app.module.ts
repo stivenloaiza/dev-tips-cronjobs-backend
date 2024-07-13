@@ -9,6 +9,7 @@ import { CronModule } from './cron/cron.module';
 import { UsersModule } from './queries/users/users.module';
 import { TipsModule } from './queries/tips/tips.module';
 import { CronJobsModule } from './queries/cron-jobs/cron-jobs.module';
+import { BotsModule } from './bots-module/bots.module';
 
 @Module({
   imports: [
@@ -23,6 +24,7 @@ import { CronJobsModule } from './queries/cron-jobs/cron-jobs.module';
     UsersModule,
     TipsModule,
     CronJobsModule,
+    BotsModule,
   ],
   controllers: [],
   providers: [
