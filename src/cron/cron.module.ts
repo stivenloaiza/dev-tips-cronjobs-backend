@@ -15,10 +15,7 @@ import { CronJobsModule } from 'src/queries/cron-jobs/cron-jobs.module';
 
 @Module({
   imports: [
-    BotsModule,
     HttpModule,
-    UsersModule,
-    CronJobsModule,
     MongooseModule.forFeature([
       { name: CronEntity.name, schema: CronSchema },
     ]),

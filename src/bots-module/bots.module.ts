@@ -14,7 +14,6 @@ import { HttpModule } from '@nestjs/axios';
     ]),
   ],
   controllers: [BotsController],
-  providers: [BotService, BotMessageRepository],
-  exports: [BotService, BotMessageRepository]
+  providers: [BotService, BotMessageRepository]
 })
 export class BotsModule { }

@@ -10,18 +10,17 @@ import { BotService } from 'src/bots-module/services/bots.service';
 import { UsersService } from 'src/queries/users/users.service';
 import { TipsService } from 'src/queries/tips/tips.service';
 import { CronJobsService } from 'src/queries/cron-jobs/cron-jobs.service';
+import { UserDto } from 'src/queries/users/dto/user.dto';
+import { TipDto } from 'src/queries/tips/dto/tip.dto';
+import { HttpService } from '@nestjs/axios';
+
 
 
 @Injectable()
 export class CronService {
   constructor(
     @InjectModel(CronEntity.name) private readonly cronModel: Model<CronEntity>,
-
-    private readonly emailService: MailService,
-    private readonly botsService: BotService,
-    private readonly usersService: UsersService,
-    private readonly tipsService: TipsService,
-    private readonly cronJobService: CronJobsService,
+    private readonly httpService: HttpService,
 
   ) { }
   private readonly logger = new Logger(CronService.name)
@@ -83,7 +82,29 @@ export class CronService {
   }
 
   private async handleCron() {
-    this.cronJobService.fetchAndStoreData()
+    try {
+      const response = this.httpService.get("localhost:3000/api/v1/cron-jobs/fetch-and-store")
+      console.log("response of service", response);
+      
+    } catch (error) {
+      console.log("error getting data to send notifications", error);
+      
+    }
   }
   
+  // private async sendTipToBot(user: UserDto, tip: TipDto) {
+
+  //   const createBotMessageDto new() = {
+  //     userId: user.id,
+  //     mediums: ['telegram', 'discord'],
+  //     tip: tip.body,
+  //   };
+
+  //   try {
+  //     await this.httpService.post('http://localhost:3000/api/v1/bots/send', createBotMessageDto).toPromise();
+  //     console.log('Tip sent to bot:', createBotMessageDto);
+  //   } catch (error) {
+  //     console.error('Error sending tip to bot:', error);
+  //   }
+  // }
 }
