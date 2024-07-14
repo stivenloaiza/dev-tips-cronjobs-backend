@@ -1,21 +1,39 @@
-import { Controller, Get, Post, Patch, Delete, Body, Param, Query, HttpStatus, HttpException } from '@nestjs/common';
-import { ApiOperation, ApiResponse, ApiBadRequestResponse, ApiParam, ApiQuery, ApiBody, ApiTags } from '@nestjs/swagger';
+import {
+  Controller,
+  Get,
+  Post,
+  Patch,
+  Delete,
+  Body,
+  Param,
+  HttpStatus,
+  HttpException,
+} from '@nestjs/common';
+import {
+  ApiOperation,
+  ApiResponse,
+  ApiBadRequestResponse,
+  ApiParam,
+  ApiQuery,
+  ApiBody,
+  ApiTags,
+} from '@nestjs/swagger';
 import { CronService } from './cron.service';
 import { CreateCronDto } from './dto/create-cron.dto';
 import { UpdateCronDto } from './dto/update-cron.dto';
-import { Cron } from './entities/cron.entity';
+import { CronEntity } from './cron.entity';
 
 @ApiTags('Cron')
 @Controller('cron')
 export class CronController {
-  constructor(private readonly cronService: CronService) { }
+  constructor(private readonly cronService: CronService) {}
 
   @Post()
   @ApiOperation({ summary: 'Create a new Cron Job' })
   @ApiResponse({
     status: 201,
     description: 'The Cron Job has been successfully created.',
-    type: Cron,
+    type: CronEntity,
   })
   @ApiBody({ type: CreateCronDto })
   @ApiBadRequestResponse({
@@ -44,7 +62,7 @@ export class CronController {
   @ApiResponse({
     status: 200,
     description: 'Retrieved all Cron Jobs successfully.',
-    type: [Cron],
+    type: [CronEntity],
   })
   async findAll() {
     try {
@@ -59,14 +77,13 @@ export class CronController {
     }
   }
 
-
   @Get(':id')
   @ApiOperation({ summary: 'Retrieve a Cron Job by ID' })
   @ApiParam({ name: 'id', description: 'The ID of the Cron Job to retrieve' })
   @ApiResponse({
     status: 200,
     description: 'Retrieved the Cron Job successfully.',
-    type: Cron,
+    type: CronEntity,
   })
   @ApiBadRequestResponse({
     description: 'Invalid ID format or Cron Job not found.',
@@ -90,7 +107,7 @@ export class CronController {
   @ApiResponse({
     status: 200,
     description: 'Updated the Cron Job successfully.',
-    type: Cron,
+    type: CronEntity,
   })
   @ApiBody({ type: UpdateCronDto })
   @ApiBadRequestResponse({
@@ -111,7 +128,10 @@ export class CronController {
 
   @Delete(':id')
   @ApiOperation({ summary: 'Soft delete a Cron Job by ID' })
-  @ApiParam({ name: 'id', description: 'The ID of the Cron Job to soft delete' })
+  @ApiParam({
+    name: 'id',
+    description: 'The ID of the Cron Job to soft delete',
+  })
   @ApiResponse({
     status: 204,
     description: 'Soft deleted the Cron Job successfully.',
@@ -133,7 +153,10 @@ export class CronController {
 
   @Delete(':id/permanently')
   @ApiOperation({ summary: 'Permanently delete a Cron Job by ID' })
-  @ApiParam({ name: 'id', description: 'The ID of the Cron Job to delete permanently' })
+  @ApiParam({
+    name: 'id',
+    description: 'The ID of the Cron Job to delete permanently',
+  })
   @ApiResponse({
     status: 204,
     description: 'Deleted the Cron Job permanently successfully.',
@@ -159,7 +182,7 @@ export class CronController {
   @ApiResponse({
     status: 200,
     description: 'Restored the Cron Job successfully.',
-    type: Cron,
+    type: CronEntity,
   })
   @ApiBadRequestResponse({
     description: 'Invalid ID format or Cron Job not found.',

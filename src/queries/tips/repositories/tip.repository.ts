@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { Tip } from '../tips.schema';
+import { Tip } from '../schema/tips.schema';
 
 @Injectable()
 export class TipRepository {

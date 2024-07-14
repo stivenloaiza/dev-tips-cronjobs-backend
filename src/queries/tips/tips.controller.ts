@@ -1,8 +1,9 @@
 import { Controller, Get } from '@nestjs/common';
 import { TipsService } from './tips.service';
-import { ApiProperty, ApiResponse } from '@nestjs/swagger';
+import { ApiResponse, ApiTags } from '@nestjs/swagger';
 
-@Controller('tips')
+@ApiTags('Queries Tips')
+@Controller('queries-tips')
 export class TipsController {
   constructor(private readonly tipsService: TipsService) {}
 

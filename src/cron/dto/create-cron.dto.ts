@@ -1,10 +1,10 @@
-import { ApiProperty } from "@nestjs/swagger";
-import { IsNotEmpty, IsString } from "class-validator";
+import { ApiProperty } from '@nestjs/swagger';
+import { IsNotEmpty, IsString } from 'class-validator';
 
 export class CreateCronDto {
   @ApiProperty({
     description: 'Name of the cron job',
-    example: 'Email Cron'
+    example: 'Email Cron',
   })
   @IsNotEmpty()
   @IsString()
@@ -12,7 +12,7 @@ export class CreateCronDto {
 
   @ApiProperty({
     description: 'Description of the cron job',
-    example: 'This cron job send in determinated schedule emails'
+    example: 'This cron job send in determinated schedule emails',
   })
   @IsNotEmpty()
   @IsString()
@@ -20,7 +20,7 @@ export class CreateCronDto {
 
   @ApiProperty({
     description: 'Cron schedule expression',
-    example: '0 0 * * *'
+    example: '0 0 * * *',
   })
   @IsNotEmpty()
   @IsString()
@@ -36,7 +36,7 @@ export class CreateCronDto {
 
   @ApiProperty({
     description: 'Current status of the cron job',
-    example: 'active'
+    example: 'active',
   })
   @IsNotEmpty()
   @IsString()
@@ -44,7 +44,7 @@ export class CreateCronDto {
 
   @ApiProperty({
     description: 'Role of the user who created the cron job',
-    example: 'system'
+    example: 'system',
   })
   @IsNotEmpty()
   @IsString()
