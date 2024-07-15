@@ -18,7 +18,7 @@ export class UsersService {
         .toPromise();
       return response.data;
     } catch (error) {
-      console.error('Error fetching users:', error);
+      console.error('Error fetching users:', error.message);
       throw error;
     }
   }

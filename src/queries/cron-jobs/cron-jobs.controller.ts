@@ -14,7 +14,14 @@ export class CronJobsController {
     description: 'Data fetched and stored successfully.',
   })
   @ApiResponse({ status: 500, description: 'Internal server error.' })
-  async fetchAndStoreData(): Promise<void> {
+  async fetchAndStoreData(): Promise<{
+    tipsToStore: any[];
+    usersToStore: any[];
+    mailDailyUsers: any[];
+    mailWeeklyUsers: any[];
+    botDailyUsers: any[];
+    botWeeklyUsers: any[];
+  }> {
     return this.cronJobsService.fetchAndStoreData();
   }
 }

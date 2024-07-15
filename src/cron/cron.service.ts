@@ -70,21 +70,24 @@ export class CronService {
     return this.cronModel.findByIdAndUpdate(id, { deletedAt: null }).exec();
   }
 
-  @Cron(CronExpression.EVERY_10_SECONDS)
-  async handleDailyCron() {
-    await this.handleCron();
-  }
+  //  @Cron(CronExpression.EVERY_10_SECONDS)
+  //  async handleDailyCron() {
+  //    await this.handleCron();
+  //  }
 
-  // '0 8 * * 1'
-  @Cron(CronExpression.EVERY_MINUTE)
-  async handleWeeklyCron() {
-    await this.handleCron();
-  }
+  //   // '0 8 * * 1'
+  //  @Cron(CronExpression.EVERY_MINUTE)
+  //  async handleWeeklyCron() {
+  //    await this.handleCron();
+  //  }
 
   private async handleCron() {
     try {
-      const response = this.httpService.get("localhost:3000/api/v1/cron-jobs/fetch-and-store")
-      console.log("response of service", response);
+      const response = this.httpService.get("http://localhost:3000/api/v1/cron-jobs/fetch-and-store").toPromise();
+      response.then(data =>{
+        console.log(data);
+        
+      })
       
     } catch (error) {
       console.log("error getting data to send notifications", error);
