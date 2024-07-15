@@ -1,11 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { TipsService } from '../tips/tips.service';
 import { UsersService } from '../users/users.service';
-import { TipRepository } from '../tips/repositories/tip.repository';
-import { UserRepository } from '../users/repositories/user.repository';
 import { TipDto } from '../tips/dto/tip.dto';
 import { UserDto } from '../users/dto/user.dto';
-import { firstValueFrom } from 'rxjs';
 
 @Injectable()
 export class CronJobsService {
@@ -35,44 +32,38 @@ export class CronJobsService {
         available: tip.available,
         technology: tip.technology,
         subtechnology: tip.subtechnology,
-        level: tip.level
-      
+        level: tip.level,
       }));
       
       console.log(tipsToStore);
-      
 
       const usersToStore = users.map((user: UserDto) => ({
         name: user.name,
         email: user.email,
         frequency: user.subscription ? user.subscription.frequency : null,
-        seniority: user.subscription ? user.subscription.seniority : null,
-        programmingLanguages: user.subscription
-          ? user.subscription.programmingLanguages
-          : [],
-        subscriptionMedium: user.subscription ? user.subscription.medium : null,
+        levels: user.subscription ? user.subscription.levels : null,
+        technology: user.subscription ? user.subscription.technology : [],
+        type: user.subscription ? user.subscription.type : null,
       }));
 
-      console.log(tipsToStore);
+      console.log(usersToStore);
 
       const mailDailyUsers = usersToStore.filter(
         (user) =>
-          user.frequency === 'daily' && user.subscriptionMedium === 'email',
+          user.frequency === 'daily' && user.type === 'email',
       );
       const mailWeeklyUsers = usersToStore.filter(
         (user) =>
-          user.frequency === 'weekly' && user.subscriptionMedium === 'email',
+          user.frequency === 'weekly' && user.type === 'email',
       );
       const botDailyUsers = usersToStore.filter(
         (user) =>
-          user.frequency === 'daily' && user.subscriptionMedium === 'bot',
+          user.frequency === 'daily' && user.type === 'bot',
       );
       const botWeeklyUsers = usersToStore.filter(
         (user) =>
-          user.frequency === 'weekly' && user.subscriptionMedium === 'bot',
+          user.frequency === 'weekly' && user.type === 'bot',
       );
-
-  
 
       console.log('Tips data fetched and stored:', tipsToStore);
       console.log('Users data fetched and stored:', usersToStore);
@@ -95,4 +86,3 @@ export class CronJobsService {
     }
   }
 }
-
