@@ -47,6 +47,9 @@ export class MailController {
           type: 'string',
           example: 'Keep your code clean and readable',
         },
+        level: { type: 'string', example: 'Senior'},
+        technology: { type: 'string', example: 'Typescript' },
+        subtechnology: { type: 'string', example: 'Nestjs' },
       },
     },
   })
@@ -58,9 +61,14 @@ export class MailController {
       link: string;
       img_url: string;
       tipsToStore: string;
+      level: string;
+      technology: string;
+      subtechnology: string;
+
+
     },
   ) {
-    const { name, email, link, img_url, tipsToStore } = body;
+    const { name, email, link, img_url, tipsToStore, level, technology, subtechnology } = body;
     const subject = 'Tu Consejo del Dia!';
     const text = `Tu consejo del día, felicidades. ${tipsToStore}!`;
     const html = this.getTipOfTheDayEmailHtml(
@@ -69,6 +77,9 @@ export class MailController {
       link,
       img_url,
       tipsToStore,
+      level,
+      technology,
+      subtechnology
     );
 
     return await this.sendEmail(email, subject, text, html);
@@ -85,6 +96,7 @@ export class MailController {
       properties: {
         code: { type: 'string', example: '123456' },
         email: { type: 'string', example: 'john@example.com' },
+
       },
     },
   })
@@ -222,6 +234,9 @@ export class MailController {
     link: string,
     img_url: string,
     tipsToStore: string,
+    level: string,
+    technology: string,
+    subtechnology: string,
   ): string {
     return `<!doctype html>
     <html lang="es">
@@ -361,7 +376,7 @@ export class MailController {
                     line-height: 1.5;
                     "
                   >
-                    ${name}, Escribe código limpio y legible
+                    Hola ${name}, Este es un tip ${level}, de ${technology} con ${subtechnology}
                   </p>
     
                 </div>
@@ -382,7 +397,10 @@ export class MailController {
           </tr>
         </table>
       </body>
-    </html> `;
+    </html>
+
+
+`;
   }
 
   private getCodeEmailHtml(code: string, email: string): string {
