@@ -1,6 +1,6 @@
 import { Controller, Post, Body, HttpException, HttpStatus } from '@nestjs/common';
 import { BotService } from '../services/bots.service';
-import { TipDto } from '../dtos/tip.dto';
+import { BotDto } from '../dtos/bot.dto';
 import { ApiTags, ApiOperation, ApiResponse, ApiBody } from '@nestjs/swagger';
 
 @ApiTags('Bots')
@@ -15,15 +15,14 @@ export class BotsController {
   @ApiResponse({ status: 500, description: 'Internal Server Error.' })
   @ApiBody({
     description: 'Details of the tip to be sent to bots',
-    type: TipDto,
+    type: BotDto,
   })
-  async sendTipToBots(@Body() tipDto: TipDto) {
+  async sendTipToBots(@Body() botDto: BotDto) {
     try {
-      await this.botService.sendTipToBots(tipDto);
-      return { statusCode: 201, message: 'Tip sent successfully.' };
+      const response = await this.botService.sendTipToBots(botDto);
+      return { statusCode: 201, message: 'Tip sent successfully.', data: response.data };
     } catch (error) {
       throw new HttpException('Internal Server Error', HttpStatus.INTERNAL_SERVER_ERROR);
     }
   }
 }
-
