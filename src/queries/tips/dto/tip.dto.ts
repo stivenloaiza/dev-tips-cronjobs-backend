@@ -4,10 +4,11 @@ import {
   IsArray,
   IsOptional,
   IsDate,
+  IsNumber,
 } from 'class-validator';
 
 export class TipDto {
-  @IsString()
+  @IsNumber()
   readonly id: number;
 
   @IsOptional()

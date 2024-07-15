@@ -5,17 +5,23 @@ import { TipRepository } from '../tips/repositories/tip.repository';
 import { UserRepository } from '../users/repositories/user.repository';
 import { TipDto } from '../tips/dto/tip.dto';
 import { UserDto } from '../users/dto/user.dto';
+import { firstValueFrom } from 'rxjs';
 
 @Injectable()
 export class CronJobsService {
   constructor(
     private readonly tipsService: TipsService,
     private readonly usersService: UsersService,
-    private readonly tipRepository: TipRepository,
-    private readonly userRepository: UserRepository,
   ) {}
 
-  async fetchAndStoreData(): Promise<void> {
+  async fetchAndStoreData(): Promise<{
+    tipsToStore: Partial<TipDto>[];
+    usersToStore: Partial<UserDto>[];
+    mailDailyUsers: Partial<UserDto>[];
+    mailWeeklyUsers: Partial<UserDto>[];
+    botDailyUsers: Partial<UserDto>[];
+    botWeeklyUsers: Partial<UserDto>[];
+  }> {
     try {
       const tips = await this.tipsService.getTips();
       const users = await this.usersService.getUsers();
@@ -26,12 +32,19 @@ export class CronJobsService {
         title: tip.title,
         body: tip.body,
         link: tip.link,
+        available: tip.available,
+        technology: tip.technology,
+        subtechnology: tip.subtechnology,
+        level: tip.level
+      
       }));
+      
+      console.log(tipsToStore);
+      
 
       const usersToStore = users.map((user: UserDto) => ({
         name: user.name,
         email: user.email,
-        subscribed: user.subscribed,
         frequency: user.subscription ? user.subscription.frequency : null,
         seniority: user.subscription ? user.subscription.seniority : null,
         programmingLanguages: user.subscription
@@ -39,6 +52,8 @@ export class CronJobsService {
           : [],
         subscriptionMedium: user.subscription ? user.subscription.medium : null,
       }));
+
+      console.log(tipsToStore);
 
       const mailDailyUsers = usersToStore.filter(
         (user) =>
@@ -57,8 +72,7 @@ export class CronJobsService {
           user.frequency === 'weekly' && user.subscriptionMedium === 'bot',
       );
 
-      await this.tipRepository.createMany(tipsToStore);
-      await this.userRepository.createMany(usersToStore);
+  
 
       console.log('Tips data fetched and stored:', tipsToStore);
       console.log('Users data fetched and stored:', usersToStore);
@@ -66,8 +80,19 @@ export class CronJobsService {
       console.log('Mail Weekly users:', mailWeeklyUsers);
       console.log('Bot Daily users:', botDailyUsers);
       console.log('Bot Weekly users:', botWeeklyUsers);
+
+      return {
+        tipsToStore,
+        usersToStore,
+        mailDailyUsers,
+        mailWeeklyUsers,
+        botDailyUsers,
+        botWeeklyUsers,
+      };
     } catch (error) {
-      console.error('Error fetching data:', error);
+      console.error('Error fetching data:', error.message);
+      throw error;
     }
   }
 }
+
