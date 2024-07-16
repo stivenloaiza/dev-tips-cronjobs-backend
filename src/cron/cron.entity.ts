@@ -2,7 +2,7 @@ import { Schema, Prop, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
 
 @Schema({ timestamps: true })
-export class Cron extends Document {
+export class CronEntity extends Document {
   @Prop({ required: true })
   name: string;
 
@@ -37,7 +37,7 @@ export class Cron extends Document {
   updatedAt?: Date;
 }
 
-export const CronSchema = SchemaFactory.createForClass(Cron);
+export const CronSchema = SchemaFactory.createForClass(CronEntity);
 
 CronSchema.index(
   { id: 1 },

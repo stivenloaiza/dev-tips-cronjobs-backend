@@ -13,6 +13,7 @@ export class BotService {
 
   async sendTipToBots(botDto: BotDto): Promise<AxiosResponse> {
     const url = process.env.BOTS_API_URL;
+
     this.logger.log(`Sending tip to URL: ${url}`);
     this.logger.log(`Tip data: ${JSON.stringify(botDto)}`);
 

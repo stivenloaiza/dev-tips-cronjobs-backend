@@ -21,7 +21,7 @@ import {
 import { CronService } from './cron.service';
 import { CreateCronDto } from './dto/create-cron.dto';
 import { UpdateCronDto } from './dto/update-cron.dto';
-import { Cron } from './cron.entity';
+import { CronEntity } from './cron.entity';
 
 @ApiTags('Cron')
 @Controller('cron')
@@ -33,7 +33,7 @@ export class CronController {
   @ApiResponse({
     status: 201,
     description: 'The Cron Job has been successfully created.',
-    type: Cron,
+    type: CronEntity,
   })
   @ApiBody({ type: CreateCronDto })
   @ApiBadRequestResponse({
@@ -62,7 +62,7 @@ export class CronController {
   @ApiResponse({
     status: 200,
     description: 'Retrieved all Cron Jobs successfully.',
-    type: [Cron],
+    type: [CronEntity],
   })
   async findAll() {
     try {
@@ -83,7 +83,7 @@ export class CronController {
   @ApiResponse({
     status: 200,
     description: 'Retrieved the Cron Job successfully.',
-    type: Cron,
+    type: CronEntity,
   })
   @ApiBadRequestResponse({
     description: 'Invalid ID format or Cron Job not found.',
@@ -107,7 +107,7 @@ export class CronController {
   @ApiResponse({
     status: 200,
     description: 'Updated the Cron Job successfully.',
-    type: Cron,
+    type: CronEntity,
   })
   @ApiBody({ type: UpdateCronDto })
   @ApiBadRequestResponse({
@@ -182,7 +182,7 @@ export class CronController {
   @ApiResponse({
     status: 200,
     description: 'Restored the Cron Job successfully.',
-    type: Cron,
+    type: CronEntity,
   })
   @ApiBadRequestResponse({
     description: 'Invalid ID format or Cron Job not found.',

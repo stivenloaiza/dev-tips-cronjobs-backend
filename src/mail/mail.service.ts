@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, InternalServerErrorException } from '@nestjs/common';
 import * as FormData from 'form-data';
 import Mailgun from 'mailgun.js';
 
@@ -24,11 +24,9 @@ export class MailService {
         html,
       });
 
-      console.log('Email sent successfully:', result);
       return result;
     } catch (error) {
-      console.error('Error sending email:', error);
-      throw error;
+      throw new InternalServerErrorException(error.message)
     }
   }
 }

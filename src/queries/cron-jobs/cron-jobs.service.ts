@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, InternalServerErrorException } from '@nestjs/common';
 import { TipsService } from '../tips/tips.service';
 import { UsersService } from '../users/users.service';
 import { TipDto } from '../tips/dto/tip.dto';
@@ -71,13 +71,6 @@ export class CronJobsService {
         user.subscription?.type.includes('bot'),
       );
 
-      console.log('Tips data fetched and stored:', tipsToStore);
-      console.log('Users data fetched and stored:', usersToStore);
-      console.log('Mail Daily users:', mailDailyUsers);
-      console.log('Mail Weekly users:', mailWeeklyUsers);
-      console.log('Bot Daily users:', botDailyUsers);
-      console.log('Bot Weekly users:', botWeeklyUsers);
-
       return {
         tipsToStore,
         usersToStore,
@@ -87,8 +80,10 @@ export class CronJobsService {
         botWeeklyUsers,
       };
     } catch (error) {
-      console.error('Error fetching data:', error.message);
-      throw error;
+
+      throw new InternalServerErrorException(error.message)
+    
+
     }
   }
 }

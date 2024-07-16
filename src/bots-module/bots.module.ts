@@ -8,4 +8,4 @@ import { HttpModule } from '@nestjs/axios';
   controllers: [BotsController],
   providers: [BotService],
 })
-export class BotsModule {}
+export class BotsModule { }
