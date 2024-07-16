@@ -1,14 +1,14 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { IsString, IsNotEmpty, IsUrl, IsOptional } from 'class-validator';
 
-export class TipDto {
+export class BotDto {
   @ApiProperty({
-    description: 'URL de contenido multimedia opcional',
+    description: 'URL for multimedia content',
     example: 'https://example.com/image.jpg',
   })
   @IsUrl()
   @IsOptional()
-  multimedia_url?: string;
+  img_url?: string;
 
   @ApiProperty({
     description: 'Title of the Tip',
@@ -67,7 +67,7 @@ export class TipDto {
   subtechnology: string;
 
   @ApiProperty({
-    description: 'ID of the channel for send de Tip',
+    description: 'ID of the channel for send a Tip',
     example: '953770917346050191',
   })
   @IsString()
@@ -80,5 +80,5 @@ export class TipDto {
   })
   @IsString()
   @IsNotEmpty()
-  channel: string;
+  channelType: string;
 }

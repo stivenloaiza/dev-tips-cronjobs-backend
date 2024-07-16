@@ -1,10 +1,10 @@
 {
 	"info": {
-		"_postman_id": "4d9cb690-026b-4d8a-a4a1-29f11084c22f",
+		"_postman_id": "690d0346-51dd-489e-b5cf-53c978e0ca90",
 		"name": "SEND MAIL",
 		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
 		"_exporter_id": "33509084",
-		"_collection_link": "https://blue-flare-210817.postman.co/workspace/931d3d74-1254-45cc-8136-433563407235/collection/33509084-4d9cb690-026b-4d8a-a4a1-29f11084c22f?action=share&source=collection_link&creator=33509084"
+		"_collection_link": "https://blue-flare-210817.postman.co/workspace/931d3d74-1254-45cc-8136-433563407235/collection/33509084-690d0346-51dd-489e-b5cf-53c978e0ca90?action=share&source=collection_link&creator=33509084"
 	},
 	"item": [
 		{
@@ -17,7 +17,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"name\": \"Felipe Forero\",\r\n    \"email\": \"elipeforero21@gmail.com\",\r\n    \"link\": \"google.com\",\r\n    \"img_url\": \"https://images.ctfassets.net/denf86kkcx7r/4IPlg4Qazd4sFRuCUHIJ1T/f6c71da7eec727babcd554d843a528b8/gatocomuneuropeo-97?fm=webp&w=612\",\r\n    \"tipsToStore\": \"TU TIP DEL DIA\"\r\n}\r\n\r\n",
+					"raw": "{\r\n  \"name\": \"Andres Gomez\",\r\n  \"email\": \"pipe2893g@gmail.com\",\r\n  \"link\": \"https://www.typescriptlang.org/\",\r\n  \"img_url\": \"https://nestjs.com/img/nest-og.png\",\r\n  \"tipsToStore\": \"aqui iria eñ tip del dia si hubiera alguno\",\r\n  \"level\": \"Senior\",\r\n  \"technology\": \"Typescript\",\r\n  \"subtechnology\": \"Nestjs\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -59,7 +59,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n\"email\": \"elipeforero21@gmail.com\",\r\n\"code\": \"fdskfsdDSFSD5\"\r\n}\r\n\r\n",
+					"raw": "{\r\n\"email\": \"veramirandasamuel6@gmail.com\",\r\n\"code\": \"fdskfsdDSFSD5\"\r\n}\r\n\r\n",
 					"options": {
 						"raw": {
 							"language": "json"

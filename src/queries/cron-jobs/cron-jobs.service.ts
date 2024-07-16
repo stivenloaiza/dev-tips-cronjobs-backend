@@ -80,8 +80,10 @@ export class CronJobsService {
         botWeeklyUsers,
       };
     } catch (error) {
+
       throw new InternalServerErrorException(error.message)
     
+
     }
   }
 }
