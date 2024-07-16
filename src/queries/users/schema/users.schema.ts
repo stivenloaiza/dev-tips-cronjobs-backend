@@ -16,10 +16,10 @@ export class User extends Document {
   frequency: string;
 
   @Prop()
-  seniority: string;
+  levels: string;
 
   @Prop([String])
-  programmingLanguages: string[];
+  technology: string[];
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);

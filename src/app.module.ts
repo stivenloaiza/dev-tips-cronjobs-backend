@@ -11,6 +11,14 @@ import { TipsModule } from './queries/tips/tips.module';
 import { CronJobsModule } from './queries/cron-jobs/cron-jobs.module';
 import { BotsModule } from './bots-module/bots.module';
 import { ScheduleModule } from '@nestjs/schedule';
+import { CronJobsService } from './queries/cron-jobs/cron-jobs.service';
+import { TipsService } from './queries/tips/tips.service';
+import { UsersService } from './queries/users/users.service';
+import { MailService } from './mail/mail.service';
+import { BotService } from './bots-module/services/bots.service';
+import { TipRepository } from './queries/tips/repositories/tip.repository';
+import { UserRepository } from './queries/users/repositories/user.repository';
+import { CronService } from './cron/cron.service';
 
 @Module({
   imports: [
@@ -34,6 +42,7 @@ import { ScheduleModule } from '@nestjs/schedule';
       provide: APP_FILTER,
       useClass: HttpExceptionFilter,
     },
+    // MailService, CronService
   ],
 })
 export class AppModule {}

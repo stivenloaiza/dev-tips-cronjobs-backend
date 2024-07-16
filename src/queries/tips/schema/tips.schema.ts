@@ -3,7 +3,7 @@ import { Document, Types as MongooseTypes } from 'mongoose';
 
 @Schema({ timestamps: true })
 export class Tip extends Document {
-  @Prop({ required: true, unique: true })
+  @Prop({ unique: false  })
   id: number;
 
   @Prop()

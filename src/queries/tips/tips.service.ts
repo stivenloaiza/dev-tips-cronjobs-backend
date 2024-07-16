@@ -14,7 +14,7 @@ export class TipsService {
         .toPromise();
       return response.data;
     } catch (error) {
-      console.error('Error fetching tips:', error);
+      console.error('Error fetching tips:', error.message);
       throw error;
     }
   }
