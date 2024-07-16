@@ -1,4 +1,4 @@
-import { HttpException, HttpStatus, Injectable, Logger } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable, InternalServerErrorException, Logger } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Cron, CronExpression } from '@nestjs/schedule';
 import { Model } from 'mongoose';
@@ -15,7 +15,6 @@ export class CronService {
   constructor(
     @InjectModel(CronEntity.name) private readonly cronModel: Model<CronEntity>,
     private readonly httpService: HttpService,
-    // private readonly mailService: MailService
   ) { }
   private readonly logger = new Logger(CronService.name)
 
@@ -69,7 +68,7 @@ export class CronService {
      await this.handleCronDaily();
    }
 
-   @Cron('0 8 * * 1')
+   @Cron(CronExpression.EVERY_10_SECONDS)
    async handleWeeklyCron() {
      await this.handleCronWeekly();
    }
@@ -102,13 +101,11 @@ export class CronService {
           "img_url": tip.img_url,
           "tipsToStore": tip.body
         }
-        console.log(body);
+        
 
         const result = await this.httpService
           .post("http://localhost:3000/api/v1/mail/tips", body)
           .toPromise()
-
-        console.log('Cron job: Email sent successfully:', result);
       }
 
       for (let i = 0; i < usersToSendBots.length; i++) {
@@ -130,7 +127,6 @@ export class CronService {
           .post("http://localhost:3000/api/v1/bots/send-tip", botBody)
           .toPromise()
 
-        console.log("Cron Job: Bot sent succesfully", execution);
 
 
 
@@ -138,7 +134,7 @@ export class CronService {
 
 
     } catch (error) {
-      console.log("error getting data to send notifications", error);
+     throw new InternalServerErrorException(error.message)
 
     }
   }
@@ -175,7 +171,6 @@ export class CronService {
           .post("http://localhost:3000/api/v1/mail/tips", body)
           .toPromise()
 
-        console.log("Cron Job: Bot sent succesfully", result);
       }
 
       for (let i = 0; i < usersToSendBots.length; i++) {
@@ -196,11 +191,9 @@ export class CronService {
         const botResult = await this.httpService
           .post("http://localhost:3000/api/v1/bots/tips", botBody)
           .toPromise();
-
-        console.log('Cron job: Bot message sent successfully:', botResult);
       }
     } catch(error) {
-    console.log("error getting data to send notifications", error);
+      throw new InternalServerErrorException(error.message)
   }
 }
 
