@@ -9,5 +9,6 @@ import { CronJobsController } from './cron-jobs.controller';
   imports: [TipsModule, UsersModule, PersistenceModule],
   providers: [CronJobsService],
   controllers: [CronJobsController],
+  exports: [CronJobsService]
 })
 export class CronJobsModule {}
