@@ -20,9 +20,11 @@ export class CronJobsService {
     botWeeklyUsers: Partial<UserDto>[];
   }> {
     try {
+      // Realiza las consultas primero
       const tips = await this.tipsService.getTips();
       const users = await this.usersService.getUsers();
 
+      // Mapea los datos de tips
       const tipsToStore = tips.map((tip: TipDto) => ({
         id: tip.id,
         img_url: tip.img_url,
@@ -34,35 +36,39 @@ export class CronJobsService {
         subtechnology: tip.subtechnology,
         level: tip.level,
       }));
-      
-      console.log(tipsToStore);
 
+      // Mapea los datos de usuarios
       const usersToStore = users.map((user: UserDto) => ({
         name: user.name,
         email: user.email,
-        frequency: user.subscription ? user.subscription.frequency : null,
-        levels: user.subscription ? user.subscription.levels : null,
-        technology: user.subscription ? user.subscription.technology : [],
-        type: user.subscription ? user.subscription.type : null,
+        subscribed: user.subscribed,
+        subscription: user.subscription ? {
+          frequency: user.subscription.frequency,
+          levels: user.subscription.levels,
+          technology: user.subscription.technology,
+          type: user.subscription.type,
+        } : null,
       }));
 
-      console.log(usersToStore);
+      // Aplica los filtros y almacena los resultados en las mismas variables
+      const mailDailyUsers = usersToStore.filter(user =>
+        user.subscription?.frequency === 'daily' &&
+        user.subscription?.type.includes('email'),
+      );
 
-      const mailDailyUsers = usersToStore.filter(
-        (user) =>
-          user.frequency === 'daily' && user.type === 'email',
+      const mailWeeklyUsers = usersToStore.filter(user =>
+        user.subscription?.frequency === 'weekly' &&
+        user.subscription?.type.includes('email'),
       );
-      const mailWeeklyUsers = usersToStore.filter(
-        (user) =>
-          user.frequency === 'weekly' && user.type === 'email',
+
+      const botDailyUsers = usersToStore.filter(user =>
+        user.subscription?.frequency === 'daily' &&
+        user.subscription?.type.includes('bot'),
       );
-      const botDailyUsers = usersToStore.filter(
-        (user) =>
-          user.frequency === 'daily' && user.type === 'bot',
-      );
-      const botWeeklyUsers = usersToStore.filter(
-        (user) =>
-          user.frequency === 'weekly' && user.type === 'bot',
+
+      const botWeeklyUsers = usersToStore.filter(user =>
+        user.subscription?.frequency === 'weekly' &&
+        user.subscription?.type.includes('bot'),
       );
 
       console.log('Tips data fetched and stored:', tipsToStore);

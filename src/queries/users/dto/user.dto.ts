@@ -11,12 +11,14 @@ export class SubscriptionDto {
   @IsString()
   readonly frequency: string;
 
-  @IsString()
-  readonly levels: string;
+  @IsArray()
+  readonly levels: string[];
 
   @IsArray()
   readonly technology: string[];
-  type: any;
+  
+  @IsArray()
+  readonly type: string[];  // Se mantiene como un arreglo
 }
 
 export class UserDto {
