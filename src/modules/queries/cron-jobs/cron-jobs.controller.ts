@@ -1,11 +1,12 @@
 import { Controller, Get } from '@nestjs/common';
 import { CronJobsService } from './cron-jobs.service';
-import { ApiHeader, ApiResponse } from '@nestjs/swagger';
+import { ApiHeader, ApiResponse, ApiTags } from '@nestjs/swagger';
 
-@Controller('cron-jobs')
+@Controller('queries-cron-jobs')
 export class CronJobsController {
   constructor(private readonly cronJobsService: CronJobsService) {}
 
+  @ApiTags('Query for Cron Jobs Module')
   @Get('fetch-and-store-data')
   @ApiResponse({ status: 200, description: 'Return all data' })
   @ApiResponse({ status: 404, description: 'Data not found' })

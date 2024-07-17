@@ -2,7 +2,7 @@ import { Controller, Get } from '@nestjs/common';
 import { TipsService } from './tips.service';
 import { ApiHeader, ApiResponse, ApiTags } from '@nestjs/swagger';
 
-@ApiTags('Queries Tips')
+@ApiTags('Query from Tips')
 @Controller('queries-tips')
 export class TipsController {
   constructor(private readonly tipsService: TipsService) {}
