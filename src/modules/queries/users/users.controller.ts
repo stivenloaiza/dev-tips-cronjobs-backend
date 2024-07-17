@@ -2,7 +2,7 @@ import { Controller, Get, Param } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { ApiHeader, ApiResponse, ApiTags } from '@nestjs/swagger';
 
-@ApiTags('Queries Users')
+@ApiTags('Queries from Users')
 @Controller('queries-users')
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
