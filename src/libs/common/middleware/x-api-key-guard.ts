@@ -19,7 +19,7 @@ export class ApiKeyMiddleware implements NestMiddleware {
         { key: apiKey },
         {
           headers: {
-            'x-api-key': process.env.X_API_KEY,
+            'x-api-key': process.env.CRON_X_API_KEY,
           },
         },
       );
