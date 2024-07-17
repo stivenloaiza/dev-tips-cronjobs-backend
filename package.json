@@ -37,11 +37,9 @@
     "handlebars": "^4.7.8",
     "mailgun.js": "^10.2.1",
     "mongoose": "^8.4.4",
-    "pg": "^8.12.0",
     "reflect-metadata": "^0.2.0",
     "rxjs": "^7.8.1",
-    "swagger-ui-express": "^5.0.1",
-    "typeorm": "^0.3.20"
+    "swagger-ui-express": "^5.0.1"
   },
   "devDependencies": {
     "@nestjs/cli": "^10.0.0",
