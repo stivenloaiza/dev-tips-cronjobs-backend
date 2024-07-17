@@ -1,0 +1,42 @@
+{
+  "info": {
+    "name": "Bots Module Test",
+    "_postman_id": "d3e0b4c4-f9c1-4e9a-bc38-e08d4e7c5f50",
+    "description": "Collection to test Bot Microservice endpoints",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Send Tip to Bots",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"img_url\": \"https://example.com/image.jpg\",\n  \"title\": \"Javascript Tip\",\n  \"body\": \"All structure of the content for the tip\",\n  \"link\": \"https://javascript.net/first_steps/\",\n  \"level\": \"Junior\",\n  \"lang\": \"Spanish\",\n  \"technology\": \"Javascript\",\n  \"subtechnology\": \"jwt\",\n  \"channelId\": \"953770917346050191\",\n  \"channelType\": \"discord\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/v1/bots/send-tip",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "v1",
+            "bots",
+            "send-tip"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
