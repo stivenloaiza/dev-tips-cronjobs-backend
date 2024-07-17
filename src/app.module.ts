@@ -1,4 +1,4 @@
-import { Module /* , NestModule, MiddlewareConsumer */ } from '@nestjs/common';
+import { Module, NestModule, MiddlewareConsumer } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import dbConfig from './libs/persistence/mongodb/config/db-config';
 import { PersistenceModule } from './libs/persistence/persistence.module';
@@ -11,8 +11,8 @@ import { TipsModule } from './modules/queries/tips/tips.module';
 import { CronJobsModule } from './modules/queries/cron-jobs/cron-jobs.module';
 import { BotsModule } from './modules/bots-module/bots.module';
 import { ScheduleModule } from '@nestjs/schedule';
-/* import { ApiKeyMiddleware } from './libs/common/middleware/x-api-key-guard';
- */
+import { ApiKeyMiddleware } from './libs/common/middleware/x-api-key-guard';
+
 @Module({
   imports: [
     ScheduleModule.forRoot(),
@@ -37,8 +37,8 @@ import { ScheduleModule } from '@nestjs/schedule';
     },
   ],
 })
-export class AppModule /* implements NestModule */ {
-  /*   configure(consumer: MiddlewareConsumer) {
+export class AppModule implements NestModule {
+  configure(consumer: MiddlewareConsumer) {
     consumer.apply(ApiKeyMiddleware).forRoutes('*');
-  } */
+  }
 }

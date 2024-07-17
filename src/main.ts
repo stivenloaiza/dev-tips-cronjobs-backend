@@ -18,6 +18,7 @@ async function bootstrap() {
       'A system to manage cron jobs and programming message tasks.',
     )
     .setVersion('1.0')
+    .addBearerAuth()
     .build();
 
   const document = SwaggerModule.createDocument(app, config);
