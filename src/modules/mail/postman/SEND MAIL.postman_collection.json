@@ -1,0 +1,74 @@
+{
+	"info": {
+		"_postman_id": "690d0346-51dd-489e-b5cf-53c978e0ca90",
+		"name": "SEND MAIL",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "33509084",
+		"_collection_link": "https://blue-flare-210817.postman.co/workspace/931d3d74-1254-45cc-8136-433563407235/collection/33509084-690d0346-51dd-489e-b5cf-53c978e0ca90?action=share&source=collection_link&creator=33509084"
+	},
+	"item": [
+		{
+			"name": "Mail Tip",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"Andres Gomez\",\r\n  \"email\": \"pipe2893g@gmail.com\",\r\n  \"link\": \"https://www.typescriptlang.org/\",\r\n  \"img_url\": \"https://nestjs.com/img/nest-og.png\",\r\n  \"tipsToStore\": \"aqui iria eñ tip del dia si hubiera alguno\",\r\n  \"level\": \"Senior\",\r\n  \"technology\": \"Typescript\",\r\n  \"subtechnology\": \"Nestjs\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:3000/api/v1/mail/tips"
+			},
+			"response": []
+		},
+		{
+			"name": "Welcome",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"elipeforero21@gmail.com\",\r\n    \"name\": \"Felipe Forero\"\r\n}\r\n\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:3000/api/v1/mail/welcome"
+			},
+			"response": []
+		},
+		{
+			"name": "Send Code",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"email\": \"veramirandasamuel6@gmail.com\",\r\n\"code\": \"fdskfsdDSFSD5\"\r\n}\r\n\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:3000/api/v1/mail/code"
+			},
+			"response": []
+		}
+	]
+}

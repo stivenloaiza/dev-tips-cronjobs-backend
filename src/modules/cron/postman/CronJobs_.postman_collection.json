@@ -1,0 +1,222 @@
+{
+	"info": {
+		"_postman_id": "e77734d5-21f2-48aa-8216-7ba3f1bd030c",
+		"name": "CronJobs_",
+		"description": "Postman collection to manage cron jobs in the API. Includes endpoints to create, retrieve, update, delete, and restore cron jobs.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "33481572"
+	},
+	"item": [
+		{
+			"name": "CreateCron",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": "Specifies that the content of the request is JSON."
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Email Cron\",\r\n    \"description\":\"send emails with cron implementation\",\r\n    \"schedule\":\"* * * * * 1\",\r\n    \"timezone\":\"Bog\",\r\n    \"status\":\"active\",\r\n    \"createdBy\":\"system\"\r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/api/v1/cron",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"cron"
+					]
+				},
+				"description": "Create a new cron job with the provided details."
+			},
+			"response": []
+		},
+		{
+			"name": "GetCrons",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/api/v1/cron",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"cron"
+					]
+				},
+				"description": "Retrieve all available cron jobs."
+			},
+			"response": []
+		},
+		{
+			"name": "GetCronByID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/api/v1/cron/{{cron_id}}",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"cron",
+						"{{cron_id}}"
+					]
+				},
+				"description": "Retrieve a specific cron job by its ID."
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateCron",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": "Specifies that the content of the request is JSON."
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Ana\",\r\n    \"description\":\"nestjs\",\r\n    \"schedule\":\"1 * * * * *\",\r\n    \"timezone\":\"Bog\",\r\n    \"status\":\"active\",\r\n    \"createdBy\":\"system\"\r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/api/v1/cron/{{cron_id}}",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"cron",
+						"{{cron_id}}"
+					]
+				},
+				"description": "Update the details of a specific cron job."
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteCron",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": "Specifies that the content of the request is JSON."
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Ana\",\r\n    \"description\":\"nestjs\",\r\n    \"schedule\":\"1 * * * * *\",\r\n    \"timezone\":\"Bog\",\r\n    \"status\":\"active\",\r\n    \"createdBy\":\"system\"\r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/api/v1/cron/{{cron_id}}",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"cron",
+						"{{cron_id}}"
+					]
+				},
+				"description": "Delete (soft delete) a specific cron job."
+			},
+			"response": []
+		},
+		{
+			"name": "DeletePermanently",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Ana\",\r\n    \"description\":\"nestjs\",\r\n    \"schedule\":\"1 * * * * *\",\r\n    \"timezone\":\"Bog\",\r\n    \"status\":\"activo\",\r\n    \"createdBy\":\"system\"\r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/api/v1/cron/668c9d32e79925969911e170",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"cron",
+						"668c9d32e79925969911e170"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "RestoreCron",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/api/v1/cron/{{cron_id}}/restore",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"cron",
+						"{{cron_id}}",
+						"restore"
+					]
+				},
+				"description": "Restore a specific cron job that was deleted."
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:3000",
+			"type": "string"
+		},
+		{
+			"key": "cron_id",
+			"value": "668eb4f2c6dbfb150241f94a"
+		}
+	]
+}
