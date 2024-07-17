@@ -1,6 +1,8 @@
 import { Controller, Get } from '@nestjs/common';
 import { CronJobsService } from './cron-jobs.service';
-import { ApiHeader, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { ApiHeader, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { TipDto } from '../tips/dto/tip.dto';
+import { UserDto } from '../users/dto/user.dto';
 
 @Controller('queries-cron-jobs')
 export class CronJobsController {
@@ -8,6 +10,7 @@ export class CronJobsController {
 
   @ApiTags('Query for Cron Jobs Module')
   @Get('fetch-and-store-data')
+  @ApiOperation({ summary: 'Fetch and store data', description: 'Fetches data from external sources and stores it in the database.' })
   @ApiResponse({ status: 200, description: 'Return all data' })
   @ApiResponse({ status: 404, description: 'Data not found' })
   @ApiResponse({ status: 500, description: 'Internal server error' })
@@ -20,24 +23,12 @@ export class CronJobsController {
     | {
         message: string;
         data: {
-          tipsToStore: Partial<
-            import('c:/Users/Missy/OneDrive/Escritorio/Samuel/Aprendizaje Integral/RIWI/Desarrollo de Software/Git Home Workstation/Etapa Final/Refinamiento/dev-tips-cronjobs-backend/src/modules/queries/tips/dto/tip.dto').TipDto
-          >[];
-          usersToStore: Partial<
-            import('c:/Users/Missy/OneDrive/Escritorio/Samuel/Aprendizaje Integral/RIWI/Desarrollo de Software/Git Home Workstation/Etapa Final/Refinamiento/dev-tips-cronjobs-backend/src/modules/queries/users/dto/user.dto').UserDto
-          >[];
-          mailDailyUsers: Partial<
-            import('c:/Users/Missy/OneDrive/Escritorio/Samuel/Aprendizaje Integral/RIWI/Desarrollo de Software/Git Home Workstation/Etapa Final/Refinamiento/dev-tips-cronjobs-backend/src/modules/queries/users/dto/user.dto').UserDto
-          >[];
-          mailWeeklyUsers: Partial<
-            import('c:/Users/Missy/OneDrive/Escritorio/Samuel/Aprendizaje Integral/RIWI/Desarrollo de Software/Git Home Workstation/Etapa Final/Refinamiento/dev-tips-cronjobs-backend/src/modules/queries/users/dto/user.dto').UserDto
-          >[];
-          botDailyUsers: Partial<
-            import('c:/Users/Missy/OneDrive/Escritorio/Samuel/Aprendizaje Integral/RIWI/Desarrollo de Software/Git Home Workstation/Etapa Final/Refinamiento/dev-tips-cronjobs-backend/src/modules/queries/users/dto/user.dto').UserDto
-          >[];
-          botWeeklyUsers: Partial<
-            import('c:/Users/Missy/OneDrive/Escritorio/Samuel/Aprendizaje Integral/RIWI/Desarrollo de Software/Git Home Workstation/Etapa Final/Refinamiento/dev-tips-cronjobs-backend/src/modules/queries/users/dto/user.dto').UserDto
-          >[];
+          tipsToStore: Partial<TipDto>[];
+          usersToStore: Partial<UserDto>[];
+          mailDailyUsers: Partial<UserDto>[];
+          mailWeeklyUsers: Partial<UserDto>[];
+          botDailyUsers: Partial<UserDto>[];
+          botWeeklyUsers: Partial<UserDto>[];
         };
         error?: undefined;
       }
