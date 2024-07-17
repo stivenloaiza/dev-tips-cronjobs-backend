@@ -11,7 +11,20 @@
 			"name": "Get user",
 			"request": {
 				"method": "GET",
-				"header": []
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/v1/queries-users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"queries-users"
+					]
+				}
 			},
 			"response": []
 		},
@@ -19,7 +32,20 @@
 			"name": "Get tips",
 			"request": {
 				"method": "GET",
-				"header": []
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/v1/queries-tips\n",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"queries-tips\n"
+					]
+				}
 			},
 			"response": []
 		},
@@ -27,7 +53,21 @@
 			"name": "Get user by id",
 			"request": {
 				"method": "GET",
-				"header": []
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/v1/queries-users/{id}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"queries-users",
+						"{id}"
+					]
+				}
 			},
 			"response": []
 		},
@@ -35,7 +75,21 @@
 			"name": "featch and store data",
 			"request": {
 				"method": "GET",
-				"header": []
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/v1/queries-cron-jobs/fetch-and-store-data\n",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"queries-cron-jobs",
+						"fetch-and-store-data\n"
+					]
+				}
 			},
 			"response": []
 		}
