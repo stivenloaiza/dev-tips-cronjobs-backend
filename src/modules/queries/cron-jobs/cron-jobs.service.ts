@@ -39,38 +39,41 @@ export class CronJobsService {
         name: user.name,
         email: user.email,
         subscribed: user.subscribed,
-        subscription: user.subscription
+        subscriptions: user.subscriptions && Object.keys(user.subscriptions).length > 0 
           ? {
-              frequency: user.subscription.frequency,
-              levels: user.subscription.levels,
-              technology: user.subscription.technology,
-              type: user.subscription.type,
+              type: user.subscriptions[0].type || null,
+              level : user.subscriptions[0].level || null,
+              technology: user.subscriptions[0].technology || null,
+              frequency: user.subscriptions[0].frequency || null,
+              channelType: user.subscriptions[0].channelType || null,
+              channelId: user.subscriptions[0].channelId || null,
+              lang: user.subscriptions[0].lang|| null
             }
           : null,
       }));
 
       const mailDailyUsers = usersToStore.filter(
         (user) =>
-          user.subscription?.frequency === 'daily' &&
-          user.subscription?.type.includes('email'),
+          user.subscriptions.frequency === 'daily' &&
+          user.subscriptions.type.includes('email'),
       );
 
       const mailWeeklyUsers = usersToStore.filter(
         (user) =>
-          user.subscription?.frequency === 'weekly' &&
-          user.subscription?.type.includes('email'),
+          user.subscriptions.frequency === 'weekly' &&
+          user.subscriptions.type.includes('email'),
       );
 
       const botDailyUsers = usersToStore.filter(
         (user) =>
-          user.subscription?.frequency === 'daily' &&
-          user.subscription?.type.includes('bot'),
+          user.subscriptions.frequency === 'daily' &&
+          user.subscriptions.type.includes('bot'),
       );
 
       const botWeeklyUsers = usersToStore.filter(
         (user) =>
-          user.subscription?.frequency === 'weekly' &&
-          user.subscription?.type.includes('bot'),
+          user.subscriptions.frequency === 'weekly' &&
+          user.subscriptions.type.includes('bot'),
       );
 
       return {

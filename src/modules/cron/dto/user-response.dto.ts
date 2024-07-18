@@ -1,6 +1,6 @@
 export class SubscriptionDto {
   frequency: string;
-  levels: string;
+  level: string;
   technology: string[];
   type: string[];
 }
@@ -9,5 +9,5 @@ export class UserDto {
   name: string;
   email: string;
   subscribed: boolean;
-  subscription: SubscriptionDto;
+  subscriptions: SubscriptionDto;
 }
