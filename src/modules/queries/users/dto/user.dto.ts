@@ -5,7 +5,6 @@ import {
   IsOptional,
   IsObject,
   IsArray,
-  isArray,
 } from 'class-validator';
 
 export class SubscriptionDto {
@@ -35,8 +34,6 @@ export class SubscriptionDto {
 }
 
 export class UserDto {
-
-
   @IsString()
   readonly name: string;
 

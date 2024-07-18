@@ -10,7 +10,11 @@ export class CronJobsController {
 
   @ApiTags('Query for Cron Jobs Module')
   @Get('fetch-and-store-data')
-  @ApiOperation({ summary: 'Fetch and store data', description: 'Fetches data from external sources and stores it in the database.' })
+  @ApiOperation({
+    summary: 'Fetch and store data',
+    description:
+      'Fetches data from external sources and stores it in the database.',
+  })
   @ApiResponse({ status: 200, description: 'Return all data' })
   @ApiResponse({ status: 404, description: 'Data not found' })
   @ApiResponse({ status: 500, description: 'Internal server error' })

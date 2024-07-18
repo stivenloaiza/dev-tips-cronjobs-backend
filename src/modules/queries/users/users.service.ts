@@ -20,7 +20,7 @@ export class UsersService {
           },
         })
         .toPromise();
-        const usersArray = response.data.items
+      const usersArray = response.data.items;
       return usersArray;
     } catch (error) {
       console.error('Error fetching users:', error);

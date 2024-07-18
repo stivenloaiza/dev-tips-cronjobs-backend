@@ -20,7 +20,6 @@ export class User extends Document {
 
   @Prop([String])
   technology: string[];
-  
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);
