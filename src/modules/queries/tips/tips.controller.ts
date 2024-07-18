@@ -8,7 +8,10 @@ export class TipsController {
   constructor(private readonly tipsService: TipsService) {}
 
   @Get()
-  @ApiOperation({ summary: 'Get all tips', description: 'Fetches all the tips from the database.' })
+  @ApiOperation({
+    summary: 'Get all tips',
+    description: 'Fetches all the tips from the database.',
+  })
   @ApiResponse({ status: 200, description: 'Return all tips' })
   @ApiResponse({ status: 404, description: 'Tips not found' })
   @ApiResponse({ status: 500, description: 'Internal server error' })

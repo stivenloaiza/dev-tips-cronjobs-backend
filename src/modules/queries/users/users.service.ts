@@ -11,16 +11,17 @@ export class UsersService {
     private readonly userRepository: UserRepository,
   ) {}
 
-  async getUsers(): Promise<UserDto[]> {
+  async getUsers(): Promise<[]> {
     try {
-      const response: AxiosResponse<UserDto[]> = await this.httpService
+      const response: AxiosResponse = await this.httpService
         .get(process.env.END_POINT_USERS, {
           headers: {
             'x-api-key': process.env.X_API_KEY,
           },
         })
         .toPromise();
-      return response.data;
+      const usersArray = response.data.items;
+      return usersArray;
     } catch (error) {
       console.error('Error fetching users:', error);
       throw error;

@@ -8,7 +8,10 @@ export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
   @Get()
-  @ApiOperation({ summary: 'Get all users', description: 'Fetches all the users from the database.' })
+  @ApiOperation({
+    summary: 'Get all users',
+    description: 'Fetches all the users from the database.',
+  })
   @ApiResponse({ status: 200, description: 'Return all users' })
   @ApiResponse({ status: 404, description: 'Users not found' })
   @ApiResponse({ status: 500, description: 'Internal server error' })
@@ -22,7 +25,10 @@ export class UsersController {
   }
 
   @Get(':id')
-  @ApiOperation({ summary: 'Get user by ID', description: 'Fetches a user from the database by their ID.' })
+  @ApiOperation({
+    summary: 'Get user by ID',
+    description: 'Fetches a user from the database by their ID.',
+  })
   @ApiResponse({ status: 200, description: 'Return user' })
   @ApiResponse({ status: 404, description: 'User not found' })
   @ApiResponse({ status: 500, description: 'Internal server error' })

@@ -12,13 +12,25 @@ export class SubscriptionDto {
   readonly frequency: string;
 
   @IsArray()
-  readonly levels: string[];
+  readonly level: string[];
 
   @IsArray()
   readonly technology: string[];
 
   @IsArray()
   readonly type: string[]; // Se mantiene como un arreglo
+
+  @IsOptional()
+  @IsObject()
+  readonly channelType: string;
+
+  @IsOptional()
+  @IsString()
+  readonly channelId: string;
+
+  @IsOptional()
+  @IsString()
+  readonly lang: string;
 }
 
 export class UserDto {
@@ -32,6 +44,6 @@ export class UserDto {
   readonly subscribed: boolean;
 
   @IsOptional()
-  @IsObject()
-  readonly subscription?: SubscriptionDto;
+  @IsArray()
+  readonly subscriptions: SubscriptionDto;
 }

@@ -16,7 +16,7 @@ export class User extends Document {
   frequency: string;
 
   @Prop()
-  levels: string;
+  level: string;
 
   @Prop([String])
   technology: string[];

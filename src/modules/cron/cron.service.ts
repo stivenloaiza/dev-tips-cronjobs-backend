@@ -128,7 +128,7 @@ export class CronService {
           technology: tip.technology,
           subtechnology: tip.subtechnology,
           channelId: tip.body,
-          channel: tip.body,
+          channelType: tip.body,
         };
         await this.httpService
           .post(
@@ -200,7 +200,7 @@ export class CronService {
           technology: tip.technology,
           subtechnology: tip.subtechnology,
           channelId: tip.body,
-          channel: tip.body,
+          channelType: tip.body,
         };
         await this.httpService
           .post(
@@ -239,11 +239,11 @@ export class CronService {
       name: response.name,
       email: response.email,
       subscribed: response.subscribed,
-      subscription: {
-        frequency: response.subscription.frequency,
-        levels: response.subscription.levels,
-        technology: response.subscription.technology,
-        type: response.subscription.type,
+      subscriptions: {
+        frequency: response.subscriptions.frequency,
+        level: response.subscriptions.level,
+        technology: response.subscriptions.technology,
+        type: response.subscriptions.type,
       },
     };
   }
