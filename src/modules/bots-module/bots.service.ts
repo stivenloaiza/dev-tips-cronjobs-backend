@@ -13,14 +13,16 @@ export class BotService {
 
   async sendTipToBots(botDto: BotDto): Promise<AxiosResponse> {
     const url = process.env.BOTS_API_URL;
+    const apiKey = process.env.CRON_X_API_KEY;
 
     this.logger.log(`Sending tip to URL: ${url}`);
     this.logger.log(`Tip data: ${JSON.stringify(botDto)}`);
+    this.logger.log(`Api Key: ${JSON.stringify(apiKey)}`);
 
     return this.httpService
-      .post(url, botDto, {
+      .post(url, (botDto), {
         headers: {
-          'x-api-key': process.env.X_API_KEY,
+          'x-api-key': apiKey,
         },
       })
       .pipe(
