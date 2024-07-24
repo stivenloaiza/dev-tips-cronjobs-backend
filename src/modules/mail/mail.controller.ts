@@ -265,121 +265,116 @@ export class MailController {
     technology: string,
     subtechnology: string,
   ): string {
-    return `<!doctype html>
-    <html lang="es">
-      <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Tip of the day</title>
-        <style>
-          body {
-            margin: 0;
-            padding: 0;
-            font-family: 'Arial', Helvetica, sans-serif;
-            background-color: #f4f4f4;
-          }
-          table {
-            border-collapse: collapse;
-            width: 100%;
-            max-width: 600px;
-            margin: 40px auto;
-          }
-          img {
-            max-width: 100%;
-            height: auto;
-            display: block;
-          }
-          .container {
-            padding: 20px;
-            background-color: white;
-            border-radius: 10px;
-          }
-          .container2 {
-            position: relative;
-            padding: 40px 20px 20px 20px;
-            background-image: url('${img_url}');
-            background-size: cover;
-            background-position: center;
-            text-align: center;
-            border-radius: 10px;
-          }
-          .container2::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            border-radius: 10px;
-            pointer-events: none;
-          }
-          .custom-box {
-            display: block;
-            flex-direction: column;
-            justify-content: center;
-            width: 100%;
-            background-color: white;
-            padding: 20px;
-            border-radius: 10px;
-            margin-bottom: 20px;
-            padding-left: 0;
-            padding-right: 0;
-          }
-          .content {
-            padding: 20px;
-            text-align: center;
-            font-family: 'Merriweather', sans-serif;
-          }
-          .content h1 {
-            font-size: 24px;
-            line-height: 1.25;
-            font-family: 'Roboto', sans-serif;
-          }
-          .content p {
-            font-size: 16px;
-            line-height: 1.5;
-          }
-          .footer {
-            font-size: 12px;
-            line-height: 1.4;
-            text-align: left;
-            padding: 20px;
-            word-break: break-word;
-          }
-          @media only screen and (max-width: 600px) {
-            .content h1 {
-              font-size: 20px;
-            }
-            .content p {
-              font-size: 14px;
-            }
-            .container,
-            .container2 {
-              padding: 10px;
-            }
-          }
-        </style>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&family=Merriweather&display=swap"
-          rel="stylesheet"
-        />
-      </head>
-      <body>
-        <table align="center" class="container">
-          <tr>
-            <td align="center" >
-              <img
-                src="https://lh3.googleusercontent.com/pw/AP1GczO9xA1DnT9ytwA9IcfgCKxPqae7jw3CIHE21JqKPozBaJHEYcrkC2upwuoiiFS35CwVuKtMQpnasJtXvkP6022qIMFBInI1Xk-OU4GzEZmwpBnLDt1oq6c4OAtgyL1lpP3SdDWj_t7-nfvsppk3K4TbDw=w528-h528-s-no-gm?authuser=0"
-                width="130px"
-                height="auto"
-              />
-            </td>
-          </tr>
-          <tr>
-            <td align="center">
-              <div class="container2">
+    return `
+    <!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tip of the day</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: 'Arial', Helvetica, sans-serif;
+        background-color: #f4f4f4;
+      }
+      table {
+        border-collapse: collapse;
+        width: 100%;
+        max-width: 600px;
+        margin: 40px auto;
+      }
+      img {
+        max-width: 100%;
+        height: auto;
+        display: block;
+      }
+      .container {
+        padding: 20px;
+        background-color: white;
+        border-radius: 10px;
+      }
+      .container2 {
+        position: relative;
+        padding: 40px 20px 20px 20px;
+        text-align: center;
+        border-radius: 10px;
+        background: url('${img_url}') no-repeat center center;
+        background-size: cover;
+        background-position: center;
+        min-height: 450px;
+      }
+      
+      .custom-box {
+        display: block;
+        flex-direction: column;
+        justify-content: center;
+        width: 100%;
+        background-color: white;
+        padding: 20px;
+        border-radius: 10px;
+        margin-bottom: 20px;
+        padding-left: 0;
+        padding-right: 0;
+      }
+      .content {
+        padding: 20px;
+        text-align: center;
+        font-family: 'Merriweather', sans-serif;
+      }
+      .content h1 {
+        font-size: 24px;
+        line-height: 1.25;
+        font-family: 'Roboto', sans-serif;
+      }
+      .content p {
+        font-size: 16px;
+        line-height: 1.5;
+      }
+      .footer {
+        font-size: 12px;
+        line-height: 1.4;
+        text-align: left;
+        padding: 20px;
+        word-break: break-word;
+      }
+      @media only screen and (max-width: 600px) {
+        .content h1 {
+          font-size: 20px;
+        }
+        .content p {
+          font-size: 14px;
+        }
+        .container,
+        .container2 {
+          padding: 10px;
+        }
+      }
+    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&family=Merriweather&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <table align="center" class="container">
+      <tr>
+        <td align="center" >
+          <img
+            src="https://lh3.googleusercontent.com/pw/AP1GczO9xA1DnT9ytwA9IcfgCKxPqae7jw3CIHE21JqKPozBaJHEYcrkC2upwuoiiFS35CwVuKtMQpnasJtXvkP6022qIMFBInI1Xk-OU4GzEZmwpBnLDt1oq6c4OAtgyL1lpP3SdDWj_t7-nfvsppk3K4TbDw=w528-h528-s-no-gm?authuser=0"
+            width="130px"
+            height="auto"
+          />
+        </td>
+      </tr>
+      <tr>
+        <td align="center">
+          <table class="container2">
+            <tr>
+              <td>
                 <div class="custom-box">
                   <h3
                     style="
@@ -389,7 +384,6 @@ export class MailController {
                       border-radius: 30px;
                       color: #ffffff;
                       text-decoration: none;
-                      
                     "
                   >
                     ${tipsToStore}
@@ -403,31 +397,29 @@ export class MailController {
                     line-height: 1.5;
                     "
                   >
-                    Hola ${name}, Este es un tip ${level}, de ${technology} con ${subtechnology}
+                    Hola ${name}. Este es un tip ${level}, de ${technology} con ${subtechnology}
                   </p>
-    
                 </div>
                 <a href="${link}" style="display: inline-block; padding: 10px 20px; background-color: #000000; border-radius: 30px; color: #ffffff; text-decoration: none; text-align: center; position: relative;">
                   Más Información, Click aqui.
                   <br>
                 </a>
-                
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <td class="footer" align="left">
-              <span>Este mensaje fue enviado a ${email}</span>
-              <br />
-              Cl. 16 #55-129 - Guayabal - 3° Piso - RIWI <br /><br />
-            </td>
-          </tr>
-        </table>
-      </body>
-    </html>
-
-
-`;
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td class="footer" align="left">
+          <span>Este mensaje fue enviado a ${email}</span>
+          <br />
+          Cl. 16 #55-129 - Guayabal - 3° Piso - RIWI <br /><br />
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>
+    `;
   }
 
   private getCodeEmailHtml(code: string, email: string): string {
