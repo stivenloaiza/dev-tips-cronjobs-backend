@@ -49,9 +49,11 @@ describe('TipsService', () => {
   });
 
   it('should handle errors correctly', async () => {
-    jest.spyOn(httpService, 'get').mockReturnValueOnce(
-      throwError(() => new Error('Internal Server Error'))
-    );
+    jest
+      .spyOn(httpService, 'get')
+      .mockReturnValueOnce(
+        throwError(() => new Error('Internal Server Error')),
+      );
 
     await expect(service.getTips()).rejects.toThrow('Failed to fetch tips');
   });

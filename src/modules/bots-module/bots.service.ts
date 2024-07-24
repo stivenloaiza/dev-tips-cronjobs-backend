@@ -20,7 +20,7 @@ export class BotService {
     this.logger.log(`Api Key: ${JSON.stringify(apiKey)}`);
 
     return this.httpService
-      .post(url, (botDto), {
+      .post(url, botDto, {
         headers: {
           'x-api-key': apiKey,
         },

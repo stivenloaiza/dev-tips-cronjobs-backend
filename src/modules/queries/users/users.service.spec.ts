@@ -9,7 +9,6 @@ import { UserDto } from './dto/user.dto';
 describe('UsersService', () => {
   let service: UsersService;
   let httpService: HttpService;
-  let userRepository: UserRepository;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
@@ -33,7 +32,6 @@ describe('UsersService', () => {
 
     service = module.get<UsersService>(UsersService);
     httpService = module.get<HttpService>(HttpService);
-    userRepository = module.get<UserRepository>(UserRepository);
   });
 
   it('should be defined', () => {
@@ -47,7 +45,7 @@ describe('UsersService', () => {
       status: 200,
       statusText: 'OK',
       headers: new AxiosHeaders(),
-      config: {} as any, // Casting to any
+      config: {} as any,
     };
 
     jest.spyOn(httpService, 'get').mockReturnValue(of(response));
@@ -57,24 +55,28 @@ describe('UsersService', () => {
   });
 
   it('should handle errors correctly when fetching users', async () => {
-    jest.spyOn(httpService, 'get').mockReturnValueOnce(throwError(() => new Error('Internal Server Error')));
+    jest
+      .spyOn(httpService, 'get')
+      .mockReturnValueOnce(
+        throwError(() => new Error('Internal Server Error')),
+      );
 
     await expect(service.getUsers()).rejects.toThrow('Internal Server Error');
   });
 
   it('should fetch user by ID successfully', async () => {
     const user: UserDto = {
-      name: 'John Doe',
-      email: 'john.doe@example.com',
+      name: 'Daniel Dominguez',
+      email: 'daniel.dani@gmail.com',
       subscribed: true,
       subscriptions: {
         frequency: 'daily',
-        level: ['beginner'],
+        level: ['junior'],
         technology: ['nestjs'],
         type: ['tutorial'],
         channelType: 'email',
         channelId: '1234',
-        lang: 'en',
+        lang: 'JavaScript',
       },
     };
 
@@ -83,7 +85,7 @@ describe('UsersService', () => {
       status: 200,
       statusText: 'OK',
       headers: new AxiosHeaders(),
-      config: {} as any, // Casting to any
+      config: {} as any,
     };
 
     jest.spyOn(httpService, 'get').mockReturnValue(of(response));
@@ -93,8 +95,14 @@ describe('UsersService', () => {
   });
 
   it('should handle errors correctly when fetching user by ID', async () => {
-    jest.spyOn(httpService, 'get').mockReturnValueOnce(throwError(() => new Error('Internal Server Error')));
+    jest
+      .spyOn(httpService, 'get')
+      .mockReturnValueOnce(
+        throwError(() => new Error('Internal Server Error')),
+      );
 
-    await expect(service.getUserById('1234')).rejects.toThrow('Internal Server Error');
+    await expect(service.getUserById('1234')).rejects.toThrow(
+      'Internal Server Error',
+    );
   });
 });

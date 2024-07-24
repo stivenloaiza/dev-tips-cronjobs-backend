@@ -30,7 +30,7 @@ describe('UsersController', () => {
   });
 
   it('should return all users', async () => {
-    const users: UserDto[] = []; // Tipo correcto
+    const users: UserDto[] = [];
     jest.spyOn(service, 'getUsers').mockResolvedValue(users);
 
     const result = await controller.getAllUsers();
@@ -38,24 +38,28 @@ describe('UsersController', () => {
   });
 
   it('should handle errors correctly when fetching all users', async () => {
-    jest.spyOn(service, 'getUsers').mockRejectedValue(new Error('Internal Server Error'));
+    jest
+      .spyOn(service, 'getUsers')
+      .mockRejectedValue(new Error('Internal Server Error'));
 
-    await expect(controller.getAllUsers()).rejects.toThrow('Internal Server Error');
+    await expect(controller.getAllUsers()).rejects.toThrow(
+      'Internal Server Error',
+    );
   });
 
   it('should return a user by ID', async () => {
     const user: UserDto = {
-      name: 'John Doe',
-      email: 'john.doe@example.com',
+      name: 'Daniel Dominguez',
+      email: 'daniel.dani@gmail.com',
       subscribed: true,
       subscriptions: {
         frequency: 'daily',
-        level: ['beginner'],
+        level: ['junior'],
         technology: ['nestjs'],
         type: ['tutorial'],
         channelType: 'email',
         channelId: '1234',
-        lang: 'en',
+        lang: 'JavaScript',
       },
     };
     jest.spyOn(service, 'getUserById').mockResolvedValue(user);
@@ -65,8 +69,12 @@ describe('UsersController', () => {
   });
 
   it('should handle errors correctly when fetching user by ID', async () => {
-    jest.spyOn(service, 'getUserById').mockRejectedValue(new Error('Internal Server Error'));
+    jest
+      .spyOn(service, 'getUserById')
+      .mockRejectedValue(new Error('Internal Server Error'));
 
-    await expect(controller.getUserById('1234')).rejects.toThrow('Internal Server Error');
+    await expect(controller.getUserById('1234')).rejects.toThrow(
+      'Internal Server Error',
+    );
   });
 });

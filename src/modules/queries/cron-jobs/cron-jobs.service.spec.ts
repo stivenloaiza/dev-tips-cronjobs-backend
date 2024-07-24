@@ -3,11 +3,9 @@ import { CronJobsService } from './cron-jobs.service';
 import { TipsService } from '../tips/tips.service';
 import { UsersService } from '../users/users.service';
 
-
 describe('CronJobsService', () => {
   let service: CronJobsService;
   let tipsService: TipsService;
-  let usersService: UsersService;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
@@ -26,7 +24,6 @@ describe('CronJobsService', () => {
 
     service = module.get<CronJobsService>(CronJobsService);
     tipsService = module.get<TipsService>(TipsService);
-    usersService = module.get<UsersService>(UsersService);
   });
 
   it('should be defined', () => {
@@ -46,7 +43,9 @@ describe('CronJobsService', () => {
   });
 
   it('should throw an error if fetching data fails', async () => {
-    jest.spyOn(tipsService, 'getTips').mockRejectedValue(new Error('Test error'));
+    jest
+      .spyOn(tipsService, 'getTips')
+      .mockRejectedValue(new Error('Test error'));
 
     await expect(service.fetchAndStoreData()).rejects.toThrow('Test error');
   });

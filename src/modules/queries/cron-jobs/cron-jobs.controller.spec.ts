@@ -50,7 +50,9 @@ describe('CronJobsController', () => {
   });
 
   it('should handle errors correctly', async () => {
-    jest.spyOn(service, 'fetchAndStoreData').mockRejectedValue(new Error('Test error'));
+    jest
+      .spyOn(service, 'fetchAndStoreData')
+      .mockRejectedValue(new Error('Test error'));
 
     const result = await controller.fetchAndStoreData();
     expect(result).toEqual({
