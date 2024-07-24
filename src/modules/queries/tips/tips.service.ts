@@ -1,7 +1,8 @@
-import { Injectable } from '@nestjs/common';
-import { AxiosResponse } from 'axios';
-import { TipDto } from './dto/tip.dto';
+import { Injectable, HttpException, HttpStatus } from '@nestjs/common';
 import { HttpService } from '@nestjs/axios';
+import { TipDto } from './dto/tip.dto';
+import { lastValueFrom } from 'rxjs';
+import { AxiosResponse } from 'axios';
 
 @Injectable()
 export class TipsService {
@@ -9,17 +10,12 @@ export class TipsService {
 
   async getTips(): Promise<TipDto[]> {
     try {
-      const response: AxiosResponse<TipDto[]> = await this.httpService
-        .get(process.env.END_POINT_TIPS, {
-          headers: {
-            'x-api-key': process.env.X_API_KEY,
-          },
-        })
-        .toPromise();
+      const response: AxiosResponse<TipDto[]> = await lastValueFrom(
+        this.httpService.get<TipDto[]>('http://example.com/tips')
+      );
       return response.data;
     } catch (error) {
-      console.error('Error fetching tips:', error.message);
-      throw error;
+      throw new HttpException('Failed to fetch tips', HttpStatus.INTERNAL_SERVER_ERROR);
     }
   }
 }
