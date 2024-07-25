@@ -82,6 +82,11 @@ export class CronService {
         .get(process.env.FETCH_AND_STORE_DATA_END_POINT_URL)
         .toPromise();
 
+      const activeCronJobs = await this.cronModel.find({ status: true }).exec();
+      if (activeCronJobs.length === 0) {
+        return;
+      }
+
       if (response.status != 200) {
         throw 'error calling service';
       }
@@ -147,6 +152,11 @@ export class CronService {
 
   private async handleCronWeekly() {
     try {
+      const activeCronJobs = await this.cronModel.find({ status: true }).exec();
+
+      if (activeCronJobs.length === 0) {
+        return;
+      }
       const response = await this.httpService
         .get(process.env.FETCH_AND_STORE_DATA_END_POINT_URL, {
           headers: {
