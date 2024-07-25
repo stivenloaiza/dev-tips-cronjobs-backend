@@ -4,9 +4,10 @@ import { UsersModule } from '../users/users.module';
 import { PersistenceModule } from '../../../libs/persistence/persistence.module';
 import { CronJobsService } from './cron-jobs.service';
 import { CronJobsController } from './cron-jobs.controller';
+import { LogModule } from 'src/libs/log/log.module';
 
 @Module({
-  imports: [TipsModule, UsersModule, PersistenceModule],
+  imports: [TipsModule, UsersModule, PersistenceModule, LogModule],
   providers: [CronJobsService],
   controllers: [CronJobsController],
   exports: [CronJobsService],
