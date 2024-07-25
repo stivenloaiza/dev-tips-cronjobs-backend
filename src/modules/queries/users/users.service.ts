@@ -16,7 +16,7 @@ export class UsersService {
       const response: AxiosResponse = await this.httpService
         .get(process.env.END_POINT_USERS, {
           headers: {
-            'x-api-key': process.env.X_API_KEY,
+            'x-api-key': process.env.CRON_X_API_KEY,
           },
         })
         .toPromise();
@@ -33,7 +33,7 @@ export class UsersService {
       const response: AxiosResponse<UserDto> = await this.httpService
         .get(`${process.env.END_POINT_USERS}/${id}`, {
           headers: {
-            'x-api-key': process.env.X_API_KEY,
+            'x-api-key': process.env.CRON_X_API_KEY,
           },
         })
         .toPromise();
