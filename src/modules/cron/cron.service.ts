@@ -71,7 +71,7 @@ export class CronService {
     await this.handleCronDaily();
   }
 
-  @Cron(CronExpression.EVERY_10_SECONDS)
+  @Cron(CronExpression.EVERY_WEEK)
   async handleWeeklyCron() {
     await this.handleCronWeekly();
   }
