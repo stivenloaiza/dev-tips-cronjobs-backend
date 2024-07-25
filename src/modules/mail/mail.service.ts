@@ -1,22 +1,20 @@
-import { Injectable, InternalServerErrorException } from '@nestjs/common';
-import * as FormData from 'form-data';
-import Mailgun from 'mailgun.js';
+import {
+  Injectable,
+  InternalServerErrorException,
+  Inject,
+} from '@nestjs/common';
 
 @Injectable()
 export class MailService {
   private mg;
 
-  constructor() {
-    const mailgun = new Mailgun(FormData);
-    this.mg = mailgun.client({
-      username: 'api',
-      key: process.env.MAILGUN_API_KEY,
-    });
+  constructor(@Inject('MAILGUN_CLIENT') mailgunClient) {
+    this.mg = mailgunClient;
   }
 
   async sendEmail(to: string, subject: string, text: string, html: string) {
     try {
-      const result = await this.mg.messages.create(process.env.MAILGUN_DOMAIN, {
+      await this.mg.messages.create(process.env.MAILGUN_DOMAIN, {
         from: `Excited User <mailgun@${process.env.MAILGUN_DOMAIN}>`,
         to,
         subject,
@@ -24,7 +22,7 @@ export class MailService {
         html,
       });
 
-      return result;
+      return { message: 'Email sent successfully!' };
     } catch (error) {
       throw new InternalServerErrorException(error.message);
     }

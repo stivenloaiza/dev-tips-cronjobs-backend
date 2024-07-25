@@ -63,22 +63,10 @@ describe('BotService', () => {
   });
 
   it('debería manejar errores correctamente', async () => {
-    const botDto: BotDto = {
-      img_url: 'https://example.com/image.jpg',
-      title: 'Javascript advice',
-      body: 'structure of content for tip',
-      link: 'https://javascript.net/first_steps/',
-      level: 'Junior',
-      lang: 'Spanish',
-      technology: 'Javascript',
-      subtechnology: 'jwt',
-      channelId: '953770917346050191',
-      channelType: 'discord',
-    };
-
-    jest.spyOn(httpService, 'post').mockReturnValueOnce(
-      throwError(() => new Error('Internal Server Error'))
-    );
-
+    jest
+      .spyOn(httpService, 'post')
+      .mockReturnValueOnce(
+        throwError(() => new Error('Internal Server Error')),
+      );
   });
 });

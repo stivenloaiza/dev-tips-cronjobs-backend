@@ -68,8 +68,17 @@ describe('BotsController', () => {
       channelType: 'discord',
     };
 
-    jest.spyOn(service, 'sendTipToBots').mockRejectedValue(new HttpException('Internal Server Error', HttpStatus.INTERNAL_SERVER_ERROR));
+    jest
+      .spyOn(service, 'sendTipToBots')
+      .mockRejectedValue(
+        new HttpException(
+          'Internal Server Error',
+          HttpStatus.INTERNAL_SERVER_ERROR,
+        ),
+      );
 
-    await expect(controller.sendTipToBots(botDto)).rejects.toThrow(HttpException);
+    await expect(controller.sendTipToBots(botDto)).rejects.toThrow(
+      HttpException,
+    );
   });
 });
