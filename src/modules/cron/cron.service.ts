@@ -3,7 +3,6 @@ import {
   HttpStatus,
   Injectable,
   InternalServerErrorException,
-  Logger,
 } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Cron, CronExpression } from '@nestjs/schedule';
@@ -21,7 +20,6 @@ export class CronService {
     @InjectModel(CronEntity.name) private readonly cronModel: Model<CronEntity>,
     private readonly httpService: HttpService,
   ) {}
-  private readonly logger = new Logger(CronService.name);
 
   async create(createCronDto: CreateCronDto): Promise<CronEntity> {
     try {
@@ -73,7 +71,7 @@ export class CronService {
     await this.handleCronDaily();
   }
 
-  @Cron(CronExpression.EVERY_10_SECONDS)
+  @Cron(CronExpression.EVERY_WEEK)
   async handleWeeklyCron() {
     await this.handleCronWeekly();
   }
@@ -109,7 +107,7 @@ export class CronService {
         await this.httpService
           .post(process.env.QUERIES_END_POINT_TO_SEND_TIPS_TO_MAIL_URL, body, {
             headers: {
-              'x-api-key': process.env.X_API_KEY,
+              'x-api-key': process.env.CRON_X_API_KEY,
             },
           })
           .toPromise();
@@ -136,7 +134,7 @@ export class CronService {
             botBody,
             {
               headers: {
-                'x-api-key': process.env.X_API_KEY,
+                'x-api-key': process.env.CRON_X_API_KEY,
               },
             },
           )
@@ -152,7 +150,7 @@ export class CronService {
       const response = await this.httpService
         .get(process.env.FETCH_AND_STORE_DATA_END_POINT_URL, {
           headers: {
-            'x-api-key': process.env.X_API_KEY,
+            'x-api-key': process.env.CRON_X_API_KEY,
           },
         })
         .toPromise();
@@ -181,7 +179,7 @@ export class CronService {
         await this.httpService
           .post(process.env.QUERIES_END_POINT_TO_SEND_TIPS_TO_MAIL_URL, body, {
             headers: {
-              'x-api-key': process.env.X_API_KEY,
+              'x-api-key': process.env.CRON_X_API_KEY,
             },
           })
           .toPromise();
@@ -208,7 +206,7 @@ export class CronService {
             botBody,
             {
               headers: {
-                'x-api-key': process.env.X_API_KEY,
+                'x-api-key': process.env.CRON_X_API_KEY,
               },
             },
           )
