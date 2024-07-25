@@ -1,7 +1,6 @@
 import { Injectable, HttpException, HttpStatus } from '@nestjs/common';
 import { HttpService } from '@nestjs/axios';
 import { TipDto } from './dto/tip.dto';
-import { lastValueFrom } from 'rxjs';
 import { AxiosResponse } from 'axios';
 
 @Injectable()
@@ -10,7 +9,6 @@ export class TipsService {
 
   async getTips(): Promise<TipDto[]> {
     try {
-
       const response: AxiosResponse<TipDto[]> = await this.httpService
         .get(`${process.env.END_POINT_TIPS}/tips/random?limit=1`, {
           headers: {

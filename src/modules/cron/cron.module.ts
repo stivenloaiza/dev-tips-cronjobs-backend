@@ -14,7 +14,7 @@ import { LogModule } from 'src/libs/log/log.module';
     HttpModule,
     MongooseModule.forFeature([{ name: CronEntity.name, schema: CronSchema }]),
     ScheduleModule.forRoot(),
-    LogModule
+    LogModule,
   ],
   controllers: [CronController],
   providers: [CronService, MailService, TipsService],

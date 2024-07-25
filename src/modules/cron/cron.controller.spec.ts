@@ -135,7 +135,6 @@ describe('CronController', () => {
     expect(await controller.update('1', updateCronJobDto)).toEqual(
       expectedResponse,
     );
-
   });
 
   it('should remove a cron job', async () => {
