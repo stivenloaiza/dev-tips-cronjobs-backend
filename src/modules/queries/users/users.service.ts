@@ -11,7 +11,7 @@ export class UsersService {
     private readonly userRepository: UserRepository,
   ) {}
 
-  async getUsers(): Promise<[]> {
+  async getUsers(): Promise<UserDto[]> {
     try {
       const response: AxiosResponse = await this.httpService
         .get(process.env.END_POINT_USERS, {
@@ -20,7 +20,7 @@ export class UsersService {
           },
         })
         .toPromise();
-      const usersArray = response.data.items;
+      const usersArray: UserDto[] = response.data.items;
       return usersArray;
     } catch (error) {
       console.error('Error fetching users:', error);
