@@ -15,8 +15,8 @@ export class CronEntity extends Document {
   @Prop({ required: true })
   timezone: string;
 
-  @Prop({ required: true })
-  status: string;
+  @Prop({ required: true, default: true })
+  status: boolean;
 
   @Prop({ required: true })
   createdBy: string;
