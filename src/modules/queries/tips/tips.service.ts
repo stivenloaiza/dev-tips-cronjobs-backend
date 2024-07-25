@@ -10,9 +10,9 @@ export class TipsService {
   async getTips(): Promise<TipDto[]> {
     try {
       const response: AxiosResponse<TipDto[]> = await this.httpService
-        .get(process.env.END_POINT_TIPS, {
+        .get(`${process.env.END_POINT_TIPS}/tips/random?limit=1`, {
           headers: {
-            'x-api-key': process.env.X_API_KEY,
+            'x-api-key': process.env.CRON_X_API_KEY,
           },
         })
         .toPromise();

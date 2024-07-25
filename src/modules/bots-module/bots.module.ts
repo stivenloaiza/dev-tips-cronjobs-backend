@@ -2,9 +2,10 @@ import { Module } from '@nestjs/common';
 import { BotsController } from './bots.controller';
 import { BotService } from './bots.service';
 import { HttpModule } from '@nestjs/axios';
+import { LogModule } from 'src/libs/log/log.module';
 
 @Module({
-  imports: [HttpModule],
+  imports: [HttpModule, LogModule],
   controllers: [BotsController],
   providers: [BotService],
 })

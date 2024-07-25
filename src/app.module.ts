@@ -12,6 +12,7 @@ import { CronJobsModule } from './modules/queries/cron-jobs/cron-jobs.module';
 import { BotsModule } from './modules/bots-module/bots.module';
 import { ScheduleModule } from '@nestjs/schedule';
 import { ApiKeyMiddleware } from './libs/common/middleware/x-api-key-guard';
+import { LogModule } from './libs/log/log.module';
 
 @Module({
   imports: [
@@ -28,6 +29,7 @@ import { ApiKeyMiddleware } from './libs/common/middleware/x-api-key-guard';
     TipsModule,
     CronJobsModule,
     BotsModule,
+    LogModule,
   ],
   controllers: [],
   providers: [

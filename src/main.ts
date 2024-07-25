@@ -2,10 +2,14 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { HttpExceptionFilter } from './libs/common/filters/http-exception.filter';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
+import { LogService } from './libs/log/services/log.service';
+import { LoggingInterceptor } from './libs/log/interceptors/logging.interceptor';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.enableCors();
+  const logService = app.get(LogService);
+  app.useGlobalInterceptors(new LoggingInterceptor(logService));
 
   const port = process.env.PORT || 3000;
   app.setGlobalPrefix('api/v1');
@@ -26,8 +30,6 @@ async function bootstrap() {
 
   SwaggerModule.setup(swaggerPath, app, document);
   await app.listen(port);
-  console.log(`Application is running on: http://localhost:${port}/api/v1`);
-  console.log(`Swagger available on: http://localhost:${port}/${swaggerPath}`);
 }
 
 bootstrap();

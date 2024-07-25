@@ -7,12 +7,14 @@ import { ScheduleModule } from '@nestjs/schedule';
 import { MailService } from 'src/modules/mail/mail.service';
 import { TipsService } from 'src/modules/queries/tips/tips.service';
 import { HttpModule } from '@nestjs/axios';
+import { LogModule } from 'src/libs/log/log.module';
 
 @Module({
   imports: [
     HttpModule,
     MongooseModule.forFeature([{ name: CronEntity.name, schema: CronSchema }]),
     ScheduleModule.forRoot(),
+    LogModule
   ],
   controllers: [CronController],
   providers: [CronService, MailService, TipsService],
