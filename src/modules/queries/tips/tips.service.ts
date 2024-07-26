@@ -19,7 +19,7 @@ export class TipsService {
       return response.data;
     } catch (error) {
       console.error('Error fetching tips:', error.message);
-      throw error;
+      throw new Error('Failed to fetch tips');
     }
   }
 }

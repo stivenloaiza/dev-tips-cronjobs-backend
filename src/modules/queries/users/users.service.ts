@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { Injectable } from '@nestjs/common';
 import { AxiosResponse } from 'axios';
 import { UserDto } from './dto/user.dto';
@@ -11,9 +12,9 @@ export class UsersService {
     private readonly userRepository: UserRepository,
   ) {}
 
-  async getUsers(): Promise<[]> {
+  async getUsers(): Promise<UserDto[]> {
     try {
-      const response: AxiosResponse = await this.httpService
+      const response: AxiosResponse<{ items: UserDto[] }> = await this.httpService
         .get(process.env.END_POINT_USERS, {
           headers: {
             'x-api-key': process.env.CRON_X_API_KEY,

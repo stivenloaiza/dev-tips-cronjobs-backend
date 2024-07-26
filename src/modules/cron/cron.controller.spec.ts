@@ -1,4 +1,3 @@
-
 import { Test, TestingModule } from '@nestjs/testing';
 import { CronController } from './cron.controller';
 import { CronService } from './cron.service';
@@ -133,7 +132,9 @@ describe('CronController', () => {
       status: 200,
     };
 
-    expect(await controller.update('1', updateCronJobDto)).toEqual(expectedResponse);
+    expect(await controller.update('1', updateCronJobDto)).toEqual(
+      expectedResponse,
+    );
   });
 
   it('should remove a cron job', async () => {
